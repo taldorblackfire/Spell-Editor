@@ -1,0 +1,69 @@
+﻿@model Spell_Editor.Models.ArtifactViewModel
+
+@{
+    ViewBag.Title = "Artifact Details";
+}
+
+<h2 style="text-align: center;">Artifact Details</h2>
+
+<div class="col-md-6">
+    <div class="form-horizontal">
+        <h4 style="text-align: center;">@Model.ArtifactInfo.Name</h4>
+        <hr />
+
+        <div class="form-group">
+            <label class="control-label col-md-5">Combined Spell Rating</label>
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.ArtifactInfo.Reach, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArtifactInfo.Path, htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.ArtifactInfo.Path, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-5">Imperial Surcharge</label>
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.ArtifactInfo.ImperialSurcharge, new { htmlAttributes = new { @class = "form-control no-border", @disabled = true } })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-5">Yantra Bonus</label>
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.ArtifactInfo.YantraBonus, new { htmlAttributes = new { @class = "form-control no-border", @disabled = true } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArtifactInfo.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea id="ArtifactInfo.Description" name="ArtifactInfo.Description" rows="12" class="form-control" cols="110" readonly>@Model.ArtifactInfo.Description</textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ArtifactInfo.ID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-6">
+    <h4 style="text-align: center;">Artifact Attainments</h4>
+    <div class="form-group" id="attainmentInfo">
+        @foreach (var item in Model.Attainments)
+        {
+            Html.RenderPartial("_AttainmentDetails", item);
+        }
+    </div>
+</div>
+
+<div class="row"></div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $("#Description").height($("#Description")[0].scrollHeight);
+    </script>
+}

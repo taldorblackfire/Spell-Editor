@@ -1,0 +1,46 @@
+﻿@model Spell_Editor.Models.RefLegacy
+
+@{
+    ViewBag.Title = "Delete Legacy";
+}
+
+<h2>Delete Legacy</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Legacy Name</dt>
+        <dd>@Html.DisplayFor(model => model.LegacyName)</dd>
+
+        <dt>Description</dt>>
+        <dd>@Html.DisplayFor(model => model.Description)</dd>
+
+        <dt>Mage Order</dt>
+        <dd>@Html.DisplayFor(model => model.MageOrder.OrderName)</dd>
+
+        <dt>Secondary Order</dt>
+        <dd>@Html.DisplayFor(model => model.MageOrder1.OrderName)</dd>
+
+        <dt>Primary Arcanum</dt>
+        <dd>@Html.DisplayFor(model => model.Arcana_Table.arcana)</dd>
+
+        <dt>Secondary Arcanum</dt>
+        <dd>@Html.DisplayFor(model => model.Arcana_Table1.arcana)</dd>
+
+        <dt>Mage Path</dt>
+        <dd>@Html.DisplayFor(model => model.MagePath.Name)</dd>
+
+        <dt>Left-Handed?</dt>
+        <dd>@Html.DisplayFor(model => model.LeftHanded)</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a href="javascript:void(0);" onclick="history.go(-1);">Back to List</a>
+        </div>
+    }
+</div>

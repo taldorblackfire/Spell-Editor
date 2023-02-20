@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Spell_Editor.Models.Rite>
+
+@{
+    ViewBag.Title = "Rites";
+}
+
+<h2>Rites</h2>
+
+<p>@Html.ActionLink("Create New Rite", "Create")</p>
+<table id="RiteTable" class="webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="webgrid-row-style">
+                <td>@item.RiteName</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.RiteId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.RiteId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.RiteId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#RiteTable').DataTable();
+    </script>
+}

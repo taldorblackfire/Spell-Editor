@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Spell_Editor.Models.Artifact_Table>
+
+@{
+    ViewBag.Title = "Artifacts";
+}
+
+<h2>Artifacts</h2>
+
+<p>@Html.ActionLink("Create New Artifact", "Create")</p>
+<table id="ArtifactTable" class="webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Artifact Name</th>
+            <th>Mana Capacity</th>
+            <th>Path</th>
+            <th>Merit Cost</th>
+            <th>Gnosis</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="webgrid-row-style">
+                <td>@item.Name</td>
+                <td>@item.Mana</td>
+                <td>@item.Path</td>
+                <td>@item.Cost</td>
+                <td>@item.Gnosis</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#ArtifactTable').DataTable();
+    </script>
+}

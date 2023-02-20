@@ -1,0 +1,26 @@
+﻿@model Spell_Editor.Models.Spell_Table
+
+@{
+    ViewBag.Title = "Spell Details";
+}
+
+<h2>@Model.Spell_Name</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd style="margin: 0 0;">
+            <textarea id="Description" name="Description" rows="15" class="form-control" readonly="readonly" cols="110">@Model.Description</textarea>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    <a href="javascript:void(0);" onclick="history.go(-1);">Back to List</a>
+</p>
+
+@section Scripts {
+    <script type="text/javascript">
+        $("#Description").height($("#Description")[0].scrollHeight);
+    </script>
+}

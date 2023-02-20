@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Spell_Editor.Models.Spell_Table>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Spells";
+}
+
+<h2>@ViewBag.Details Spells</h2>
+
+<p>
+    @Html.ActionLink("Create New Spell", "Create") |
+    @Html.ActionLink("Back To List", "Index")
+</p>
+<table id="SpellTable" class="webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Spell Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="webgrid-row-style">
+                <td>@item.Spell_Name</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#SpellTable').DataTable();
+    </script>
+}

@@ -1,0 +1,133 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+select {
+    max-width: 300px;
+}
+
+.webgrid-table {
+    font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+    font-size: 0.9em;
+    width: 100%;
+    display: table;
+    border-collapse: separate;
+    border: solid 1px gray;
+    /*background-color: floralwhite;*/
+    background-color: whitesmoke;
+}
+
+.webgrid-table td, th {
+    border: 1px ridge;
+    padding: 3px 7px 2px;
+}
+
+.webgrid-header {
+    font-size: 1em;
+    /*background-color: antiquewhite;*/ 
+    background: -webkit-gradient(linear, left top, left bottom, from(lightgray), to(floralwhite));
+    background: -moz-linear-gradient(top,  lightgray,  floralwhite);
+    height: 30px;
+    padding-bottom: 4px;
+    padding-top: 5px;
+    text-align: left;
+}
+
+.webgrid-row-style {
+    /*background-color: floralwhite;*/
+    background-color: white;
+    padding: 3px 7px 2px;
+}
+
+.webgrid-alternating-row {
+    background-color: ghostwhite;
+    /*background-color: whitesmoke;*/
+    
+    padding: 3px 7px 2px;
+}
+
+.webgrid {
+    width: 100%;
+    border: 1px;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+.webgrid a {
+    color: darkblue;
+}
+
+.webgrid-footer {
+    /*background-color: antiquewhite;*/
+    /*background-color: lightgray;*/
+    background: -webkit-gradient(linear, left top, left bottom, from(floralwhite), to(lightgray));
+    background: -moz-linear-gradient(top,  floralwhite,  lightgray);
+    padding: 6px 5px;
+    text-align: center;
+    height: 30px;
+}
+
+.blank_row
+{
+    height: 10px !important; /* Overwrite any previous rules */
+    background-color: #FFFFFF;
+}
+
+.webgrid-footer a {
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	/*border: solid 1px #da7c0c;*/
+    border: solid 1px gray;
+	/*background: floralwhite;*/
+    background: white;
+	text-align: center;
+	text-decoration: none;
+	padding: .2em .75em .2em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .2em; 
+	-moz-border-radius: .2em;
+	border-radius: .2em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.webgrid-footer a:hover {
+	/*background: #f47c20;*/
+    background: lightgray;
+	/*background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));*/
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(gray));
+	/*background: -moz-linear-gradient(top,  #f88e11,  #f06015);*/
+    background: -moz-linear-gradient(top,  white,  gray);
+	/*filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');*/
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=white, endColorstr=gray);
+}
+.webgrid-footer a:active {
+	position: relative;
+	top: 1px;
+}
+
+.no-border {
+    border: 0;
+    box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+}
+
+.move-left {
+    width: auto;
+    box-shadow: none;
+}

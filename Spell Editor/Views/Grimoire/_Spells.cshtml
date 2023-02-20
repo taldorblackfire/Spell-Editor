@@ -1,0 +1,48 @@
+﻿@using HtmlHelpers.BeginCollectionItem;
+@model Spell_Editor.Models.Rote
+
+@{
+    List<string> list = new List<string>();
+
+    foreach (var str in ViewBag.Skills)
+    {
+        list.Add(str.Text);
+    }
+}
+
+@using (Html.BeginCollectionItem("Spells"))
+{
+    <div id="spellRow">
+        @if (Model.Id > 0)
+        {
+            <div id="spell" class="form-group">
+                <label class="control-label col-md-2">Rote</label>
+                <div class="col-md-10">
+                    @Html.DisplayFor(m => m.Spell_Name) (@list[Model.SkillID-1])
+                </div>
+            </div>
+            <p style="margin-left: 30%;">
+                <a href="#" class="deleteRow" onclick="deleteSpell(@Model.RoteId)">Delete Spell</a>
+            </p>
+        }
+        else
+        {
+            <div id="arcanaRow" class="form-group">
+                <label class="control-label col-md-2">Rote</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.Id, (SelectList)ViewBag.Spells, "Select", new { @class = "form-control" })
+                </div>
+            </div>
+            <div id="skillRow" class="form-group">
+                <label class="control-label col-md-2">Skill</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.SkillID, (SelectList)ViewBag.Skills, "Select", new { @class = "form-control" })
+                </div>
+            </div>
+            <p style="margin-left: 30%;">
+                <a href="#" class="deleteRow" onclick="deleteFunction(this)">Delete Spell</a>
+            </p>
+        }
+        @Html.HiddenFor(m => m.RoteId)
+    </div>
+}

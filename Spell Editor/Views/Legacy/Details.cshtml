@@ -1,0 +1,85 @@
+﻿@model Spell_Editor.Models.RefLegacy
+
+@{
+    ViewBag.Title = "Legacy Details";
+}
+
+<h2>@Model.LegacyName</h2>
+<hr />
+<div class="form-horizontal">
+    <div class="form-group">
+        @if (Model.MageOrder != null)
+        {
+            <div class="col-md-4">
+                <label class="control-label col-md-6">Mage Order:</label>
+                <div class="col-md-6" style="padding-left: 0px; padding-right: 0px;">
+                    @Html.EditorFor(model => model.MageOrder.OrderName, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                </div>
+            </div>
+        }
+
+        @if (Model.MageOrder1 != null)
+        {
+            <div class="col-md-4">
+                <label class="control-label col-md-6">Secondary Order:</label>
+                <div class="col-md-6" style="padding-left: 0px; padding-right: 0px;">
+                    @Html.EditorFor(model => model.MageOrder1.OrderName, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                </div>
+            </div>
+        }
+
+        @if (Model.MagePath != null)
+        {
+            <div class="col-md-4">
+                <label class="control-label col-md-6">Mage Path:</label>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.MagePath.Name, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-4">
+                <label class="control-label col-md-12">Mage Path: All Paths</label>
+            </div>
+        }
+
+        <div class="col-md-4">
+            <label class="control-label col-md-6">Ruling Arcanum:</label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Arcana_Table.arcana, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+            </div>
+        </div>
+
+        @if (Model.Arcana_Table1 != null)
+        {
+            <div class="col-md-4">
+                <label class="control-label col-md-6">Optional Arcanum:</label>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Arcana_Table1.arcana, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                </div>
+            </div>
+        }
+
+        <div class="col-md-4">
+            <label class="control-label col-md-6">Left-Handed?</label>
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.LeftHanded, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @Html.TextAreaFor(model => model.Description, 10, 50, htmlAttributes: new { @class = "form-control description", @readonly = true })
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LegacyId }) |
+    <a href="javascript:void(0);" onclick="history.go(-1);">Back to List</a>
+</p>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(".description").height($(".description")[0].scrollHeight);
+    </script>
+}

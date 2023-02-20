@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Spell_Editor.Models.Vampire_Disciplines>
+
+@{
+    ViewBag.Title = "List of Disciplines";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New Discipline", "Create")
+</p>
+<table id="DisciplineTable" class="table webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Discipline</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="webgrid-row-style">
+                <td>@item.Discipline</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#DisciplineTable').DataTable();
+    </script>
+}

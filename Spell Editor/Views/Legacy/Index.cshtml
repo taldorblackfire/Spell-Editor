@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Spell_Editor.Models.RefLegacy>
+
+@{
+    ViewBag.Title = "Legacies";
+}
+
+<h2>Legacies</h2>
+
+<p>
+    @Html.ActionLink("Create New Legacy", "Create")
+</p>
+<table id="LegacyTable" class="table webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Legacy Name</th>
+            <th>Legacy Path</th>
+            <th>Legacy Order</th>
+            <th>Legacy Secondary Order</th>
+            <th>Legacy Primary Arcanum</th>
+            <th>Legacy Optional Arcanum</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr class="webgrid-row-style">
+            @if (item.LeftHanded == true)
+            {
+                <td>@Html.ActionLink(item.LegacyName + " (Left Handed)", "Details", new { id = item.LegacyId })</td>
+            }
+            else
+            {
+                <td>@Html.ActionLink(item.LegacyName, "Details", new { id = item.LegacyId })</td>
+            }
+
+            @if (item.MagePath != null)
+            {
+                <td>@item.MagePath.Name</td>
+            }
+            else
+            {
+                <td>All Paths</td>
+            }
+
+            @if (item.MageOrder != null)
+            {
+                <td>@item.MageOrder.OrderName</td>
+            }
+            else
+            {
+                <td></td>
+            }
+
+            @if (item.MageOrder1 != null)
+            {
+                <td>@item.MageOrder1.OrderName</td>
+            }
+            else
+            {
+                <td></td>
+            }
+
+            <td>@item.Arcana_Table.arcana</td>
+
+            @if (item.Arcana_Table1 != null)
+            {
+                <td>@item.Arcana_Table1.arcana</td>
+            }
+            else
+            {
+                <td></td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#LegacyTable').DataTable();
+    </script>
+}

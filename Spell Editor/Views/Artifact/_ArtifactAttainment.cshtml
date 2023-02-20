@@ -1,0 +1,21 @@
+﻿@using HtmlHelpers.BeginCollectionItem;
+@model Spell_Editor.Models.ArtifactAttainment
+
+@using (Html.BeginCollectionItem("Attainments"))
+{
+    @Html.HiddenFor(model => model.ArtifactId)
+    @Html.HiddenFor(model => model.Id)
+    <div id="attainmentRow">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-4" style="display: inline-block; text-align: right;">Attainment</label>
+                <div class="col-md-8" style="display: inline-block;">
+                    @Html.DropDownListFor(m => m.AttainmentId, (SelectList)ViewBag.ArtifactAttainments, "Select", new { @class = "form-control itemSpellSelect" })
+                </div>
+                <p style="margin-left: 30%;">
+                    <a href="#" class="deleteRow">Delete Attainment</a>
+                </p>
+            </div>
+        </div>
+    </div>
+}

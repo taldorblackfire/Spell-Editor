@@ -1,0 +1,75 @@
+﻿@model Spell_Editor.Models.RefLegacy
+
+@{
+    ViewBag.Title = "Edit Legacy";
+}
+
+<h2 style="text-align: center;">Edit Legacy</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.LegacyId)
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-6">
+                <label class="control-label col-md-6">Legacy Name</label>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.LegacyName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LegacyName, "", new { @class = "text-danger" })
+                </div>
+
+                <label class="control-label col-md-6">Legacy Order</label>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.OrderId, (IEnumerable<SelectListItem>)ViewBag.OrderList, "--Select--", htmlAttributes: new { @class = "form-control" })
+                </div>
+
+                <label class="control-label col-md-6">Second Order</label>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.SecondOrderId, (IEnumerable<SelectListItem>)ViewBag.OrderList, "--Select--", htmlAttributes: new { @class = "form-control" })
+                </div>
+
+                <label class="control-label col-md-6">Mage Path</label>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.PathId, (IEnumerable<SelectListItem>)ViewBag.PathList, "--Select--", htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="control-label col-md-6">Ruling Arcanum</label>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.RulingArcana, (IEnumerable<SelectListItem>)ViewBag.ArcanaList, "--Select--", htmlAttributes: new { @class = "form-control" })
+                </div>
+
+                <label class="control-label col-md-6">Optional Arcanum</label>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.SecondaryArcana, (IEnumerable<SelectListItem>)ViewBag.ArcanaList, "--Select--", htmlAttributes: new { @class = "form-control" })
+                </div>
+
+                <label class="control-label col-md-6">Left-Handed?</label>
+                <div class="col-md-2">
+                    @Html.CheckBoxFor(model => model.LeftHanded, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Description</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, 10, 50, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

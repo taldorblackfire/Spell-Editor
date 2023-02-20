@@ -1,0 +1,57 @@
+﻿@model Spell_Editor.Models.TitleViewModel
+@{
+    ViewBag.Title = "Mage Titles";
+}
+
+<div class="form-horizontal">
+    <div class="col-md-6">
+        <h4>Mage Caucus Titles</h4>
+        <hr />
+        @Html.ActionLink("Create New Caucus Title", "CreateCaucus")
+        <table class="table webgrid-table" id="Caucus">
+            <thead>
+                <tr class="webgrid-header">
+                    <th>Title</th>
+                    <th>Order</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.MageCaucus.Count; i++)
+                {
+                    <tr class="webgrid-row-style">
+                        <td>@Html.ActionLink(Model.MageCaucus[i].Title, "DetailsCaucus", new { id = Model.MageCaucus[i].MageCaucusId })</td>
+                        <td>@Model.MageCaucus[i].MageOrder1.OrderName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-6">
+        <h4>Consilium Titles</h4>
+        <hr />
+        @Html.ActionLink("Create New Consilium Title", "CreateConsilium")
+        <table class="table webgrid-table" id="Consilium">
+            <thead>
+                <tr class="webgrid-header">
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Consilium.Count; i++)
+                {
+                    <tr class="webgrid-row-style">
+                        <td>@Html.ActionLink(Model.Consilium[i].Title + " (Consilium)", "DetailsConsilium", new { id = Model.Consilium[i].ConsiliumTitleId })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#Caucus').DataTable();
+        var table2 = $('#Consilium').DataTable();
+    </script>
+}

@@ -1,0 +1,64 @@
+﻿@model Spell_Editor.Models.Attainment_Table
+
+@{
+    ViewBag.Title = "Create Attainment";
+}
+
+<h2>Create Attainment</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Attainment Information</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Attainment Name:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.attainment_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.attainment_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Attainment Arcana:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.attainment_arcana, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.attainment_arcana, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Attainment Level:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.attainment_level, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.attainment_level, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Description:</label>
+            <div class="col-md-10">
+                <textarea id="description" name="description" rows="12" class="form-control" cols="80"></textarea>
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

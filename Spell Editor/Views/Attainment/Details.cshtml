@@ -1,0 +1,39 @@
+﻿@model Spell_Editor.Models.Attainment_Table
+
+@{
+    ViewBag.Title = "Attainment Details";
+}
+
+<h2 style="text-align: center;">@Model.attainment_name</h2>
+<hr />
+<div class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label col-md-1" style="text-align: center;">Arcana</label>
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.attainment_arcana, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "background-color: white;" } })
+        </div>
+
+        <label class="control-label col-md-1" style="text-align: center;">Level</label>
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.attainment_level, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "background-color: white;" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label style="width: 100%; text-align: center;">Description</label>
+        <hr/>
+        <div class="col-md-12">
+            <textarea id="description" name="description" rows="12" class="form-control" readonly="readonly" cols="80">@Model.description</textarea>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    <a href="javascript:void(0);" onclick="history.go(-1);">Back to List</a>
+</p>
+
+@section Scripts {
+    <script type="text/javascript">
+        $("#description").height($("#description")[0].scrollHeight);
+    </script>
+}

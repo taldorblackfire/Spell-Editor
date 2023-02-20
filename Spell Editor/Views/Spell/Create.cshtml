@@ -1,0 +1,83 @@
+﻿@model Spell_Editor.Models.SpellModel
+
+@{
+    ViewBag.Title = "Create New Spell";
+}
+
+<h2>Create New Spell</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Spell Name</label>
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.spell_table.Spell_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.spell_table.Spell_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="arcanainfo">
+            @foreach (var item in Model.spell_arcana ?? new List<Spell_Editor.Models.Spell_Arcana_Table>())
+            {
+                Html.RenderPartial("_Spell_Arcana", item);
+            }
+            @Html.ValidationMessageFor(model => model.spell_arcana, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <p style="margin-left: 30%;">
+                <input type="button" id="addArcana" name="addArcana" value="Add Arcana" />
+            </p>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.spell_table.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea id="spell_table.Description" name="spell_table.Description" rows="15" class="form-control" cols="110"></textarea>
+                @Html.ValidationMessageFor(model => model.spell_table.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $('#addArcana').on('click', function () {
+        $.ajax({
+            async: false,
+            url: '/Spell/AddNewArcana'
+        }).success(function (partialView) {
+            $('#arcanainfo').append(partialView);
+        });
+    });
+
+    function deleteFunction(id) {
+        if (id > 0) {
+            $.ajax({
+                url: '/Spell/DeleteArcana?id=' + id
+            });
+        }
+    }
+
+    $(".deleteRow").on("click", function () {
+        $(this).parents("#spellRow:first").remove();
+        return false;
+    });
+</script>
+
+}

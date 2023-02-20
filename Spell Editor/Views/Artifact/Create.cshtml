@@ -1,0 +1,106 @@
+﻿@model Spell_Editor.Models.ArtifactViewModel
+
+@{
+    ViewBag.Title = "Create Artifact";
+}
+
+<h2>Create New Artifact</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h4 style="text-align: center;">Artifact Information</h4>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="col-md-6">
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ArtifactInfo.Name, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.ArtifactInfo.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ArtifactInfo.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-5">Combined Spell Rating</label>
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.ArtifactInfo.Reach, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ArtifactInfo.Reach, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ArtifactInfo.Path, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.ArtifactInfo.Path, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ArtifactInfo.Path, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-5">Imperial Surcharge</label>
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.ArtifactInfo.ImperialSurcharge, new { htmlAttributes = new { @class = "form-control no-border" } })
+                    @Html.ValidationMessageFor(model => model.ArtifactInfo.ImperialSurcharge, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-5">Yantra Bonus</label>
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.ArtifactInfo.YantraBonus, new { htmlAttributes = new { @class = "form-control no-border" } })
+                    @Html.ValidationMessageFor(model => model.ArtifactInfo.YantraBonus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ArtifactInfo.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <textarea id="ArtifactInfo.Description" name="ArtifactInfo.Description" rows="15" class="form-control" cols="110">@Model.ArtifactInfo.Description</textarea>
+                    @Html.ValidationMessageFor(model => model.ArtifactInfo.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h4 style="text-align: center;">Artifact Attainments</h4>
+        <div class="form-group" id="attainmentInfo">
+            @foreach (var item in Model.Attainments)
+            {
+                Html.RenderPartial("_ArtifactAttainment", item);
+            }
+        </div>
+
+        <p style="margin-left: 40%;">
+            <input type="button" id="addAttainment" name="addAttainment" value="Add Attainment" />
+        </p>
+    </div>
+}
+
+<div class="row"></div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).on("click", ".deleteRow", function () {
+            $(this).parents("#attainmentRow:first").remove();
+            return false;
+        });
+
+        $("#addAttainment").on('click', function () {
+            $.ajax({
+                async: false,
+                url: '/Artifact/AddAttainment',
+                success: function (partialView) {
+                    $('#attainmentInfo').append(partialView);
+                }
+            });
+        });
+    </script>
+}

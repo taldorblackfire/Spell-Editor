@@ -1,0 +1,40 @@
+﻿@model Spell_Editor.Models.MeritListModel
+
+@{
+    ViewBag.Title = "Merits";
+}
+
+<h2>Merits</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="MeritTable" class="table webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Merit Name</th>
+            <th>Merit Category</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Merits)
+        {
+            <tr class="webgrid-row-style">
+                <td>@item.Name</td>
+                <td>@item.Category</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MeritId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MeritId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MeritId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#MeritTable').DataTable();
+    </script>
+}

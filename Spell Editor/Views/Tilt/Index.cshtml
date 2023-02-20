@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Spell_Editor.Models.Tilt>
+
+@{
+    ViewBag.Title = "Tilts";
+}
+
+<h2>Tilts</h2>
+
+<p>
+    @Html.ActionLink("Create New Tilt", "Create")
+</p>
+
+<table id="TiltTable" class="webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Tilt Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="webgrid-row-style">
+                <td>@item.Name</td>
+                <td>@item.Type</td>
+                <td>@item.Description</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#TiltTable').DataTable();
+    </script>
+}

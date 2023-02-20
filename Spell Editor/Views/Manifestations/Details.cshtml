@@ -1,0 +1,31 @@
+﻿@model Spell_Editor.Models.Haunt
+
+@{
+    ViewBag.Title = "Haunt Details";
+}
+
+<h2>@Model.Name</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*<p style="text-align: left;">
+                Type: @Html.DisplayFor(model => model.type)
+            </p>*@
+        </dt>
+        <dd style="margin: 0 0;">
+            <textarea id="description" name="description" rows="12" class="form-control" readonly="readonly" cols="80">@Model.AbilityOne</textarea>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HauntId }) |
+    <a href="javascript:void(0);" onclick="history.go(-1);">Back to List</a>
+</p>
+
+@section Scripts {
+    <script type="text/javascript">
+        $("#description").height($("#description")[0].scrollHeight);
+    </script>
+}

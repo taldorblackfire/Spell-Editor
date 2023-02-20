@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Haunt Index";
+}
+
+<h2>Haunt Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="ManifestationsTable" class="table webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Haunt Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="webgrid-row-style">
+                <td>@Html.ActionLink((string)item, "Manifestations", new { id = item.Trim() })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#MainfestationsTable').DataTable();
+    </script>
+}

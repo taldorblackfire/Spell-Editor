@@ -1,0 +1,2235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WoDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ammo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="equipmentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Arcana_Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="arcana" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Purview" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Mystaria.dbo.ArmorTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ArmorTable">
+          <Key>
+            <PropertyRef Name="ArmorId" />
+            
+            
+            
+            
+            
+            
+            
+            
+          </Key>
+          <Property Name="ArmorId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ArmorName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="GeneralArmor" Type="int" Nullable="false" />
+          <Property Name="BulletArmor" Type="int" Nullable="false" />
+          <Property Name="Degrade" Type="bit" Nullable="false" />
+          <Property Name="RangedDefense" Type="bit" Nullable="false" />
+          <Property Name="Supernatural" Type="bit" Nullable="false" />
+          <Property Name="BonusHealth" Type="int" Nullable="false" />
+          <Property Name="BonusDefense" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Artifact_Table">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Reach" Type="smallint" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ImperialSurcharge" Type="bit" Nullable="false" />
+          <Property Name="YantraBonus" Type="bit" Nullable="false" />
+          <Property Name="Mana" Type="smallint" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost" Type="smallint" Nullable="false" />
+          <Property Name="Gnosis" Type="smallint" Nullable="false" />
+          <Property Name="CharacterId" Type="int" />
+        </EntityType>
+        <EntityType Name="ArtifactAttainment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AttainmentId" Type="int" Nullable="false" />
+          <Property Name="ArtifactId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Attainment_Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="attainment_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="attainment_arcana" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="attainment_level" Type="smallint" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ItemUsable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Attribute_Table">
+          <Key>
+            <PropertyRef Name="attributeId" />
+          </Key>
+          <Property Name="attributeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="attribute_name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Ceremonies">
+          <Key>
+            <PropertyRef Name="CeremonyId" />
+          </Key>
+          <Property Name="CeremonyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Requirement" Type="nvarchar" MaxLength="200" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Duration" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Symbols" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Ritual" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Success" Type="nvarchar" MaxLength="900" Nullable="false" />
+          <Property Name="DiePool" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Cost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Character_Equipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="characterId" Type="int" Nullable="false" />
+          <Property Name="equipmentId" Type="int" Nullable="false" />
+          <Property Name="current_ammo" Type="int" />
+          <Property Name="ammoId" Type="int" />
+          <Property Name="equipped" Type="bit" Nullable="false" />
+          <Property Name="quantity" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Character_List">
+          <Key>
+            <PropertyRef Name="characterId" />
+          </Key>
+          <Property Name="characterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Condition">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Effect" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Beat" Type="nvarchar(max)" />
+          <Property Name="Resolution" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FetishTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Effect" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Talen" Type="bit" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grimoire_Table">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Cost" Type="smallint" Nullable="false" />
+          <Property Name="CharacterID" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Haunts">
+          <Key>
+            <PropertyRef Name="HauntId" />
+          </Key>
+          <Property Name="HauntId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AbilityOne" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AbilityTwo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AbilityThree" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AbilityFour" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AbilityFive" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Imbued_Table">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Spell_Level" Type="smallint" Nullable="false" />
+          <Property Name="Battery_Dots" Type="smallint" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CharacterID" Type="int" />
+          <Property Name="Mana" Type="smallint" Nullable="false" />
+          <Property Name="CurrentCharge" Type="int" />
+          <Property Name="Cost" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImbuedItemSpell">
+          <Key>
+            <PropertyRef Name="ImbuedItemSpellId" />
+          </Key>
+          <Property Name="ImbuedItemSpellId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImbuedItemId" Type="int" Nullable="false" />
+          <Property Name="SpellId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemEnhancement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImbuedItemId" Type="int" />
+          <Property Name="EnhancedItemId" Type="int" />
+          <Property Name="EnhancementId" Type="int" />
+          <Property Name="Enhancement" Type="varchar" MaxLength="200" />
+          <Property Name="EnhancementCost" Type="int" Nullable="false" />
+          <Property Name="SpellId" Type="int" />
+        </EntityType>
+        <EntityType Name="MageCaucusInfo">
+          <Key>
+            <PropertyRef Name="MageCaucusId" />
+          </Key>
+          <Property Name="MageCaucusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MageOrder" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MageConsiliumTitles">
+          <Key>
+            <PropertyRef Name="ConsiliumTitleId" />
+          </Key>
+          <Property Name="ConsiliumTitleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SmallEssential" Type="bit" />
+          <Property Name="MediumEssential" Type="bit" />
+          <Property Name="LargeEssential" Type="bit" />
+          <Property Name="UniqueTitle" Type="bit" />
+          <Property Name="MaxNumber" Type="int" />
+          <Property Name="MinGnosis" Type="int" />
+        </EntityType>
+        <EntityType Name="MageOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RoteSpecialty1" Type="int" />
+          <Property Name="RoteSpecialty2" Type="int" />
+          <Property Name="RoteSpecialty3" Type="int" />
+        </EntityType>
+        <EntityType Name="MagePath">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstRulingArcana" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="SecondRulingArcana" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Memento">
+          <Key>
+            <PropertyRef Name="MementoId" />
+          </Key>
+          <Property Name="MementoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="InnateKey" Type="int" Nullable="false" />
+          <Property Name="Effect" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Durability" Type="int" Nullable="false" />
+          <Property Name="Structure" Type="int" Nullable="false" />
+          <Property Name="Size" Type="int" Nullable="false" />
+          <Property Name="Armor" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Merits">
+          <Key>
+            <PropertyRef Name="MeritId" />
+          </Key>
+          <Property Name="MeritId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaxValue" Type="int" Nullable="false" />
+          <Property Name="AdditionalInfo" Type="bit" />
+          <Property Name="Leveled" Type="bit" Nullable="false" />
+          <Property Name="LevelStart" Type="int" />
+          <Property Name="Multiple" Type="bit" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RefBurden">
+          <Key>
+            <PropertyRef Name="Burden" />
+          </Key>
+          <Property Name="Burden" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RefEnhancement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bonus" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Cost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RefGeistKey">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AttributeId" Type="int" />
+          <Property Name="Doom" Type="nvarchar" MaxLength="500" />
+          <Property Name="Resonance" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="RefLegacy">
+          <Key>
+            <PropertyRef Name="LegacyId" />
+          </Key>
+          <Property Name="LegacyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PathId" Type="int" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="SecondOrderId" Type="int" />
+          <Property Name="RulingArcana" Type="int" Nullable="false" />
+          <Property Name="SecondaryArcana" Type="int" />
+          <Property Name="LegacyName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LeftHanded" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rote_Table">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GrimoireID" Type="int" Nullable="false" />
+          <Property Name="SpellTableID" Type="int" Nullable="false" />
+          <Property Name="SkillID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sight_Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skill_Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skills">
+          <Key>
+            <PropertyRef Name="skillId" />
+          </Key>
+          <Property Name="skillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="skill_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="category" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Spell_Arcana_Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Spell_Table_ID" Type="int" Nullable="false" />
+          <Property Name="Arcana" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Level" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Spell_Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Spell_Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrimaryFactor" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Tilt">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Effect" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Cause" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Resolution" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vampire_Coils">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Level" Type="tinyint" Nullable="false" />
+          <Property Name="Coil" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vampire_Cruac">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vampire_Devotion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Effect" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Cost" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vampire_Disciplines">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Discipline" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Vampire_Sorcery">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SpellView">
+          <Key>
+            <PropertyRef Name="Spell_Name" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Arcana" />
+            <PropertyRef Name="Level" />
+          </Key>
+          <Property Name="Spell_Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Arcana" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Level" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Artifact_Table_Character_List">
+          <End Role="Character_List" Type="Self.Character_List" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Artifact_Table" Type="Self.Artifact_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character_List">
+              <PropertyRef Name="characterId" />
+            </Principal>
+            <Dependent Role="Artifact_Table">
+              <PropertyRef Name="CharacterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArtifactAttainment_Artifact_Table">
+          <End Role="Artifact_Table" Type="Self.Artifact_Table" Multiplicity="1" />
+          <End Role="ArtifactAttainment" Type="Self.ArtifactAttainment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artifact_Table">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ArtifactAttainment">
+              <PropertyRef Name="ArtifactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArtifactAttainment_Attainment_Table">
+          <End Role="Attainment_Table" Type="Self.Attainment_Table" Multiplicity="1" />
+          <End Role="ArtifactAttainment" Type="Self.ArtifactAttainment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attainment_Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArtifactAttainment">
+              <PropertyRef Name="AttainmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_Equipment_Ammo">
+          <End Role="Ammo" Type="Self.Ammo" Multiplicity="0..1" />
+          <End Role="Character_Equipment" Type="Self.Character_Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ammo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character_Equipment">
+              <PropertyRef Name="ammoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_Equipment_Character_List">
+          <End Role="Character_List" Type="Self.Character_List" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Character_Equipment" Type="Self.Character_Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character_List">
+              <PropertyRef Name="characterId" />
+            </Principal>
+            <Dependent Role="Character_Equipment">
+              <PropertyRef Name="characterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grimoire_Table_Character_List">
+          <End Role="Character_List" Type="Self.Character_List" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Grimoire_Table" Type="Self.Grimoire_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character_List">
+              <PropertyRef Name="characterId" />
+            </Principal>
+            <Dependent Role="Grimoire_Table">
+              <PropertyRef Name="CharacterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imbued_Table_Character_List">
+          <End Role="Character_List" Type="Self.Character_List" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Imbued_Table" Type="Self.Imbued_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character_List">
+              <PropertyRef Name="characterId" />
+            </Principal>
+            <Dependent Role="Imbued_Table">
+              <PropertyRef Name="CharacterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImbuedItemSpell_Imbued_Table">
+          <End Role="Imbued_Table" Type="Self.Imbued_Table" Multiplicity="1" />
+          <End Role="ImbuedItemSpell" Type="Self.ImbuedItemSpell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imbued_Table">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImbuedItemSpell">
+              <PropertyRef Name="ImbuedItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImbuedItemSpell_Spell_Table">
+          <End Role="Spell_Table" Type="Self.Spell_Table" Multiplicity="1" />
+          <End Role="ImbuedItemSpell" Type="Self.ImbuedItemSpell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spell_Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImbuedItemSpell">
+              <PropertyRef Name="SpellId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemEnhancement_Imbued_Table">
+          <End Role="Imbued_Table" Type="Self.Imbued_Table" Multiplicity="0..1" />
+          <End Role="ItemEnhancement" Type="Self.ItemEnhancement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imbued_Table">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ItemEnhancement">
+              <PropertyRef Name="ImbuedItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemEnhancement_RefEnhancement">
+          <End Role="RefEnhancement" Type="Self.RefEnhancement" Multiplicity="0..1" />
+          <End Role="ItemEnhancement" Type="Self.ItemEnhancement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RefEnhancement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemEnhancement">
+              <PropertyRef Name="EnhancementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemEnhancement_Spell_Table">
+          <End Role="Spell_Table" Type="Self.Spell_Table" Multiplicity="0..1" />
+          <End Role="ItemEnhancement" Type="Self.ItemEnhancement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spell_Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemEnhancement">
+              <PropertyRef Name="SpellId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MageCaucusInfo_MageOrder">
+          <End Role="MageOrder" Type="Self.MageOrder" Multiplicity="1" />
+          <End Role="MageCaucusInfo" Type="Self.MageCaucusInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MageOrder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MageCaucusInfo">
+              <PropertyRef Name="MageOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefLegacy_Arcana_Table">
+          <End Role="Arcana_Table" Type="Self.Arcana_Table" Multiplicity="1" />
+          <End Role="RefLegacy" Type="Self.RefLegacy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arcana_Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RefLegacy">
+              <PropertyRef Name="RulingArcana" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefLegacy_Arcana_Table1">
+          <End Role="Arcana_Table" Type="Self.Arcana_Table" Multiplicity="0..1" />
+          <End Role="RefLegacy" Type="Self.RefLegacy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arcana_Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RefLegacy">
+              <PropertyRef Name="SecondaryArcana" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefLegacy_MageOrder">
+          <End Role="MageOrder" Type="Self.MageOrder" Multiplicity="0..1" />
+          <End Role="RefLegacy" Type="Self.RefLegacy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MageOrder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RefLegacy">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefLegacy_MageOrder1">
+          <End Role="MageOrder" Type="Self.MageOrder" Multiplicity="0..1" />
+          <End Role="RefLegacy" Type="Self.RefLegacy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MageOrder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RefLegacy">
+              <PropertyRef Name="SecondOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefLegacy_MagePath">
+          <End Role="MagePath" Type="Self.MagePath" Multiplicity="0..1" />
+          <End Role="RefLegacy" Type="Self.RefLegacy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MagePath">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RefLegacy">
+              <PropertyRef Name="PathId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rote_Table_Grimoire_Table">
+          <End Role="Grimoire_Table" Type="Self.Grimoire_Table" Multiplicity="1" />
+          <End Role="Rote_Table" Type="Self.Rote_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grimoire_Table">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Rote_Table">
+              <PropertyRef Name="GrimoireID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rote_Table_Skills">
+          <End Role="Skills" Type="Self.Skills" Multiplicity="1" />
+          <End Role="Rote_Table" Type="Self.Rote_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skills">
+              <PropertyRef Name="skillId" />
+            </Principal>
+            <Dependent Role="Rote_Table">
+              <PropertyRef Name="SkillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rote_Table_Spell_Table">
+          <End Role="Spell_Table" Type="Self.Spell_Table" Multiplicity="1" />
+          <End Role="Rote_Table" Type="Self.Rote_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spell_Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rote_Table">
+              <PropertyRef Name="SpellTableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Spell_Arcana_Table_Spell_Table">
+          <End Role="Spell_Table" Type="Self.Spell_Table" Multiplicity="1" />
+          <End Role="Spell_Arcana_Table" Type="Self.Spell_Arcana_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spell_Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Spell_Arcana_Table">
+              <PropertyRef Name="Spell_Table_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WoDModelStoreContainer">
+          <EntitySet Name="Ammo" EntityType="Self.Ammo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Arcana_Table" EntityType="Self.Arcana_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Artifact_Table" EntityType="Self.Artifact_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArtifactAttainment" EntityType="Self.ArtifactAttainment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Attainment_Table" EntityType="Self.Attainment_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Attribute_Table" EntityType="Self.Attribute_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ceremonies" EntityType="Self.Ceremonies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Character_Equipment" EntityType="Self.Character_Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Character_List" EntityType="Self.Character_List" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Condition" EntityType="Self.Condition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FetishTable" EntityType="Self.FetishTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grimoire_Table" EntityType="Self.Grimoire_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Haunts" EntityType="Self.Haunts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Imbued_Table" EntityType="Self.Imbued_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImbuedItemSpell" EntityType="Self.ImbuedItemSpell" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemEnhancement" EntityType="Self.ItemEnhancement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MageCaucusInfo" EntityType="Self.MageCaucusInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MageConsiliumTitles" EntityType="Self.MageConsiliumTitles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MageOrder" EntityType="Self.MageOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MagePath" EntityType="Self.MagePath" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Memento" EntityType="Self.Memento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Merits" EntityType="Self.Merits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RefBurden" EntityType="Self.RefBurden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RefEnhancement" EntityType="Self.RefEnhancement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RefGeistKey" EntityType="Self.RefGeistKey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RefLegacy" EntityType="Self.RefLegacy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rote_Table" EntityType="Self.Rote_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sight_Table" EntityType="Self.Sight_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skill_Table" EntityType="Self.Skill_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skills" EntityType="Self.Skills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Spell_Arcana_Table" EntityType="Self.Spell_Arcana_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Spell_Table" EntityType="Self.Spell_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tilt" EntityType="Self.Tilt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vampire_Coils" EntityType="Self.Vampire_Coils" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vampire_Cruac" EntityType="Self.Vampire_Cruac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vampire_Devotion" EntityType="Self.Vampire_Devotion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vampire_Disciplines" EntityType="Self.Vampire_Disciplines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vampire_Sorcery" EntityType="Self.Vampire_Sorcery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArmorTable" EntityType="Self.ArmorTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ArmorTable].[ArmorId] AS [ArmorId], 
+    [ArmorTable].[ArmorName] AS [ArmorName], 
+    [ArmorTable].[GeneralArmor] AS [GeneralArmor], 
+    [ArmorTable].[BulletArmor] AS [BulletArmor], 
+    [ArmorTable].[Degrade] AS [Degrade], 
+    [ArmorTable].[RangedDefense] AS [RangedDefense], 
+    [ArmorTable].[Supernatural] AS [Supernatural], 
+    [ArmorTable].[BonusHealth] AS [BonusHealth], 
+    [ArmorTable].[BonusDefense] AS [BonusDefense]
+    FROM [dbo].[ArmorTable] AS [ArmorTable]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SpellView" EntityType="Self.SpellView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SpellView].[Spell_Name] AS [Spell_Name], 
+    [SpellView].[Description] AS [Description], 
+    [SpellView].[Id] AS [Id], 
+    [SpellView].[Arcana] AS [Arcana], 
+    [SpellView].[Level] AS [Level]
+    FROM [dbo].[SpellView] AS [SpellView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Artifact_Table_Character_List" Association="Self.FK_Artifact_Table_Character_List">
+            <End Role="Character_List" EntitySet="Character_List" />
+            <End Role="Artifact_Table" EntitySet="Artifact_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArtifactAttainment_Artifact_Table" Association="Self.FK_ArtifactAttainment_Artifact_Table">
+            <End Role="Artifact_Table" EntitySet="Artifact_Table" />
+            <End Role="ArtifactAttainment" EntitySet="ArtifactAttainment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArtifactAttainment_Attainment_Table" Association="Self.FK_ArtifactAttainment_Attainment_Table">
+            <End Role="Attainment_Table" EntitySet="Attainment_Table" />
+            <End Role="ArtifactAttainment" EntitySet="ArtifactAttainment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_Equipment_Ammo" Association="Self.FK_Character_Equipment_Ammo">
+            <End Role="Ammo" EntitySet="Ammo" />
+            <End Role="Character_Equipment" EntitySet="Character_Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_Equipment_Character_List" Association="Self.FK_Character_Equipment_Character_List">
+            <End Role="Character_List" EntitySet="Character_List" />
+            <End Role="Character_Equipment" EntitySet="Character_Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grimoire_Table_Character_List" Association="Self.FK_Grimoire_Table_Character_List">
+            <End Role="Character_List" EntitySet="Character_List" />
+            <End Role="Grimoire_Table" EntitySet="Grimoire_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imbued_Table_Character_List" Association="Self.FK_Imbued_Table_Character_List">
+            <End Role="Character_List" EntitySet="Character_List" />
+            <End Role="Imbued_Table" EntitySet="Imbued_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImbuedItemSpell_Imbued_Table" Association="Self.FK_ImbuedItemSpell_Imbued_Table">
+            <End Role="Imbued_Table" EntitySet="Imbued_Table" />
+            <End Role="ImbuedItemSpell" EntitySet="ImbuedItemSpell" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImbuedItemSpell_Spell_Table" Association="Self.FK_ImbuedItemSpell_Spell_Table">
+            <End Role="Spell_Table" EntitySet="Spell_Table" />
+            <End Role="ImbuedItemSpell" EntitySet="ImbuedItemSpell" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemEnhancement_Imbued_Table" Association="Self.FK_ItemEnhancement_Imbued_Table">
+            <End Role="Imbued_Table" EntitySet="Imbued_Table" />
+            <End Role="ItemEnhancement" EntitySet="ItemEnhancement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemEnhancement_RefEnhancement" Association="Self.FK_ItemEnhancement_RefEnhancement">
+            <End Role="RefEnhancement" EntitySet="RefEnhancement" />
+            <End Role="ItemEnhancement" EntitySet="ItemEnhancement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemEnhancement_Spell_Table" Association="Self.FK_ItemEnhancement_Spell_Table">
+            <End Role="Spell_Table" EntitySet="Spell_Table" />
+            <End Role="ItemEnhancement" EntitySet="ItemEnhancement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MageCaucusInfo_MageOrder" Association="Self.FK_MageCaucusInfo_MageOrder">
+            <End Role="MageOrder" EntitySet="MageOrder" />
+            <End Role="MageCaucusInfo" EntitySet="MageCaucusInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefLegacy_Arcana_Table" Association="Self.FK_RefLegacy_Arcana_Table">
+            <End Role="Arcana_Table" EntitySet="Arcana_Table" />
+            <End Role="RefLegacy" EntitySet="RefLegacy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefLegacy_Arcana_Table1" Association="Self.FK_RefLegacy_Arcana_Table1">
+            <End Role="Arcana_Table" EntitySet="Arcana_Table" />
+            <End Role="RefLegacy" EntitySet="RefLegacy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefLegacy_MageOrder" Association="Self.FK_RefLegacy_MageOrder">
+            <End Role="MageOrder" EntitySet="MageOrder" />
+            <End Role="RefLegacy" EntitySet="RefLegacy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefLegacy_MageOrder1" Association="Self.FK_RefLegacy_MageOrder1">
+            <End Role="MageOrder" EntitySet="MageOrder" />
+            <End Role="RefLegacy" EntitySet="RefLegacy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefLegacy_MagePath" Association="Self.FK_RefLegacy_MagePath">
+            <End Role="MagePath" EntitySet="MagePath" />
+            <End Role="RefLegacy" EntitySet="RefLegacy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rote_Table_Grimoire_Table" Association="Self.FK_Rote_Table_Grimoire_Table">
+            <End Role="Grimoire_Table" EntitySet="Grimoire_Table" />
+            <End Role="Rote_Table" EntitySet="Rote_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rote_Table_Skills" Association="Self.FK_Rote_Table_Skills">
+            <End Role="Skills" EntitySet="Skills" />
+            <End Role="Rote_Table" EntitySet="Rote_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rote_Table_Spell_Table" Association="Self.FK_Rote_Table_Spell_Table">
+            <End Role="Spell_Table" EntitySet="Spell_Table" />
+            <End Role="Rote_Table" EntitySet="Rote_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spell_Arcana_Table_Spell_Table" Association="Self.FK_Spell_Arcana_Table_Spell_Table">
+            <End Role="Spell_Table" EntitySet="Spell_Table" />
+            <End Role="Spell_Arcana_Table" EntitySet="Spell_Arcana_Table" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WoDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ammo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="equipmentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Character_Equipment" Relationship="Self.FK_dbo_Character_Equipment_dbo_Ammo_ammoId" FromRole="Ammo" ToRole="Character_Equipment" />
+        </EntityType>
+        <EntityType Name="Arcana_Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="arcana" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Purview" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RefLegacies" Relationship="WoDModel.FK_RefLegacy_Arcana_Table" FromRole="Arcana_Table" ToRole="RefLegacy" />
+          <NavigationProperty Name="RefLegacies1" Relationship="WoDModel.FK_RefLegacy_Arcana_Table1" FromRole="Arcana_Table" ToRole="RefLegacy" />
+          </EntityType>
+        <EntityType Name="ArmorTable">
+          <Key>
+            <PropertyRef Name="ArmorId" />
+          </Key>
+          <Property Name="ArmorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArmorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GeneralArmor" Type="Int32" Nullable="false" />
+          <Property Name="BulletArmor" Type="Int32" Nullable="false" />
+          <Property Name="Degrade" Type="Boolean" Nullable="false" />
+          <Property Name="RangedDefense" Type="Boolean" Nullable="false" />
+          <Property Name="Supernatural" Type="Boolean" Nullable="false" />
+          <Property Name="BonusHealth" Type="Int32" Nullable="false" />
+          <Property Name="BonusDefense" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Artifact_Table">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Reach" Type="Int16" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mana" Type="Int16" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Int16" Nullable="false" />
+          <Property Name="Gnosis" Type="Int16" Nullable="false" />
+          <Property Name="CharacterId" Type="Int32" />
+          <NavigationProperty Name="Character_List" Relationship="Self.FK_Artifact_Table_Character_List" FromRole="Artifact_Table" ToRole="Character_List" />
+          <Property Name="ImperialSurcharge" Type="Boolean" Nullable="false" />
+          <Property Name="YantraBonus" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ArtifactAttainments" Relationship="WoDModel.FK_ArtifactAttainment_Artifact_Table" FromRole="Artifact_Table" ToRole="ArtifactAttainment" />
+        </EntityType>
+        <EntityType Name="Attainment_Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="attainment_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="attainment_arcana" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="attainment_level" Type="Int16" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemUsable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ArtifactAttainments" Relationship="WoDModel.FK_ArtifactAttainment_Attainment_Table" FromRole="Attainment_Table" ToRole="ArtifactAttainment" />
+        </EntityType>
+        <EntityType Name="Ceremony">
+          <Key>
+            <PropertyRef Name="CeremonyId" />
+          </Key>
+          <Property Name="CeremonyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Requirement" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Duration" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Symbols" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ritual" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Success" Type="String" MaxLength="900" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DiePool" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Character_Equipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="characterId" Type="Int32" Nullable="false" />
+          <Property Name="equipmentId" Type="Int32" Nullable="false" />
+          <Property Name="current_ammo" Type="Int32" />
+          <Property Name="ammoId" Type="Int32" />
+          <Property Name="equipped" Type="Boolean" Nullable="false" />
+          <Property Name="quantity" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Ammo" Relationship="Self.FK_dbo_Character_Equipment_dbo_Ammo_ammoId" FromRole="Character_Equipment" ToRole="Ammo" />
+          <NavigationProperty Name="Character_List" Relationship="Self.FK_dbo_Character_Equipment_dbo_Character_List_characterId" FromRole="Character_Equipment" ToRole="Character_List" />
+        </EntityType>
+        <EntityType Name="Character_List">
+          <Key>
+            <PropertyRef Name="characterId" />
+          </Key>
+          <Property Name="characterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Artifact_Table" Relationship="Self.FK_Artifact_Table_Character_List" FromRole="Character_List" ToRole="Artifact_Table" />
+          <NavigationProperty Name="Character_Equipment" Relationship="Self.FK_dbo_Character_Equipment_dbo_Character_List_characterId" FromRole="Character_List" ToRole="Character_Equipment" />
+          <NavigationProperty Name="Grimoire_Table" Relationship="Self.FK_Grimoire_Table_Character_List" FromRole="Character_List" ToRole="Grimoire_Table" />
+          <NavigationProperty Name="Imbued_Table" Relationship="Self.FK_Imbued_Table_Character_List" FromRole="Character_List" ToRole="Imbued_Table" />
+        </EntityType>
+        <EntityType Name="Condition">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Effect" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Beat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Resolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grimoire_Table">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Int16" Nullable="false" />
+          <Property Name="CharacterID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Character_List" Relationship="Self.FK_Grimoire_Table_Character_List" FromRole="Grimoire_Table" ToRole="Character_List" />
+          <NavigationProperty Name="Rote_Table" Relationship="WoDModel.FK_Rote_Table_Grimoire_Table" FromRole="Grimoire_Table" ToRole="Rote_Table" />
+        </EntityType>
+        <EntityType Name="Haunt">
+          <Key>
+            <PropertyRef Name="HauntId" />
+          </Key>
+          <Property Name="HauntId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AbilityOne" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AbilityTwo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AbilityThree" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AbilityFour" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AbilityFive" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Imbued_Table">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Spell_Level" Type="Int16" Nullable="false" />
+          <Property Name="Battery_Dots" Type="Int16" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CharacterID" Type="Int32" />
+          <Property Name="Mana" Type="Int16" Nullable="false" />
+          <Property Name="CurrentCharge" Type="Int32" />
+          <Property Name="Cost" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Character_List" Relationship="Self.FK_Imbued_Table_Character_List" FromRole="Imbued_Table" ToRole="Character_List" />
+          <NavigationProperty Name="ImbuedItemSpells" Relationship="Self.FK_ImbuedItemSpell_Imbued_Table" FromRole="Imbued_Table" ToRole="ImbuedItemSpell" />
+          <NavigationProperty Name="ItemEnhancements" Relationship="WoDModel.FK_ItemEnhancement_Imbued_Table" FromRole="Imbued_Table" ToRole="ItemEnhancement" />
+        </EntityType>
+        <EntityType Name="ImbuedItemSpell">
+          <Key>
+            <PropertyRef Name="ImbuedItemSpellId" />
+          </Key>
+          <Property Name="ImbuedItemSpellId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImbuedItemId" Type="Int32" Nullable="false" />
+          <Property Name="SpellId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Imbued_Table" Relationship="Self.FK_ImbuedItemSpell_Imbued_Table" FromRole="ImbuedItemSpell" ToRole="Imbued_Table" />
+          <NavigationProperty Name="Spell_Table" Relationship="Self.FK_ImbuedItemSpell_Spell_Table" FromRole="ImbuedItemSpell" ToRole="Spell_Table" />
+        </EntityType>
+        <EntityType Name="MageCaucusInfo">
+          <Key>
+            <PropertyRef Name="MageCaucusId" />
+          </Key>
+          <Property Name="MageCaucusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MageOrder" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MageOrder1" Relationship="WoDModel.FK_MageCaucusInfo_MageOrder" FromRole="MageCaucusInfo" ToRole="MageOrder" />
+        </EntityType>
+        <EntityType Name="MageConsiliumTitle">
+          <Key>
+            <PropertyRef Name="ConsiliumTitleId" />
+          </Key>
+          <Property Name="ConsiliumTitleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SmallEssential" Type="Boolean" />
+          <Property Name="MediumEssential" Type="Boolean" />
+          <Property Name="LargeEssential" Type="Boolean" />
+          <Property Name="UniqueTitle" Type="Boolean" />
+          <Property Name="MaxNumber" Type="Int32" />
+          <Property Name="MinGnosis" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Memento">
+          <Key>
+            <PropertyRef Name="MementoId" />
+          </Key>
+          <Property Name="MementoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InnateKey" Type="Int32" Nullable="false" />
+          <Property Name="Effect" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Durability" Type="Int32" Nullable="false" />
+          <Property Name="Structure" Type="Int32" Nullable="false" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
+          <Property Name="Armor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Merit">
+          <Key>
+            <PropertyRef Name="MeritId" />
+          </Key>
+          <Property Name="MeritId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaxValue" Type="Int32" Nullable="false" />
+          <Property Name="AdditionalInfo" Type="Boolean" />
+          <Property Name="Leveled" Type="Boolean" Nullable="false" />
+          <Property Name="LevelStart" Type="Int32" />
+          <Property Name="Multiple" Type="Boolean" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RefBurden">
+          <Key>
+            <PropertyRef Name="Burden" />
+          </Key>
+          <Property Name="Burden" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RefGeistKey">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AttributeId" Type="Int32" />
+          <Property Name="Doom" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Resonance" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Sight_Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Skill_Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Spell_Arcana_Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Spell_Table_ID" Type="Int32" Nullable="false" />
+          <Property Name="Arcana" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Level" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Spell_Table" Relationship="Self.FK__Spell_Arc__Spell__4589517F" FromRole="Spell_Arcana_Table" ToRole="Spell_Table" />
+        </EntityType>
+        <EntityType Name="Spell_Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Spell_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrimaryFactor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ImbuedItemSpells" Relationship="Self.FK_ImbuedItemSpell_Spell_Table" FromRole="Spell_Table" ToRole="ImbuedItemSpell" />
+          <NavigationProperty Name="Spell_Arcana_Table" Relationship="Self.FK__Spell_Arc__Spell__4589517F" FromRole="Spell_Table" ToRole="Spell_Arcana_Table" />
+          <NavigationProperty Name="Rote_Table" Relationship="WoDModel.FK_Rote_Table_Spell_Table" FromRole="Spell_Table" ToRole="Rote_Table" />
+          <NavigationProperty Name="ItemEnhancements" Relationship="WoDModel.FK_ItemEnhancement_Spell_Table" FromRole="Spell_Table" ToRole="ItemEnhancement" />
+        </EntityType>
+        <EntityType Name="Tilt">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Effect" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cause" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Resolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vampire_Coils">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Level" Type="Byte" Nullable="false" />
+          <Property Name="Coil" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vampire_Cruac">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vampire_Devotion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Effect" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vampire_Disciplines">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Discipline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Vampire_Sorcery">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Byte" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Character_Equipment_dbo_Ammo_ammoId">
+          <End Role="Ammo" Type="Self.Ammo" Multiplicity="0..1" />
+          <End Role="Character_Equipment" Type="Self.Character_Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ammo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character_Equipment">
+              <PropertyRef Name="ammoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Artifact_Table_Character_List">
+          <End Role="Character_List" Type="Self.Character_List" Multiplicity="0..1" />
+          <End Role="Artifact_Table" Type="Self.Artifact_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character_List">
+              <PropertyRef Name="characterId" />
+            </Principal>
+            <Dependent Role="Artifact_Table">
+              <PropertyRef Name="CharacterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Character_Equipment_dbo_Character_List_characterId">
+          <End Role="Character_List" Type="Self.Character_List" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Character_Equipment" Type="Self.Character_Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character_List">
+              <PropertyRef Name="characterId" />
+            </Principal>
+            <Dependent Role="Character_Equipment">
+              <PropertyRef Name="characterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grimoire_Table_Character_List">
+          <End Role="Character_List" Type="Self.Character_List" Multiplicity="0..1" />
+          <End Role="Grimoire_Table" Type="Self.Grimoire_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character_List">
+              <PropertyRef Name="characterId" />
+            </Principal>
+            <Dependent Role="Grimoire_Table">
+              <PropertyRef Name="CharacterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imbued_Table_Character_List">
+          <End Role="Character_List" Type="Self.Character_List" Multiplicity="0..1" />
+          <End Role="Imbued_Table" Type="Self.Imbued_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character_List">
+              <PropertyRef Name="characterId" />
+            </Principal>
+            <Dependent Role="Imbued_Table">
+              <PropertyRef Name="CharacterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImbuedItemSpell_Imbued_Table">
+          <End Role="Imbued_Table" Type="Self.Imbued_Table" Multiplicity="1" />
+          <End Role="ImbuedItemSpell" Type="Self.ImbuedItemSpell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imbued_Table">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImbuedItemSpell">
+              <PropertyRef Name="ImbuedItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImbuedItemSpell_Spell_Table">
+          <End Role="Spell_Table" Type="Self.Spell_Table" Multiplicity="1" />
+          <End Role="ImbuedItemSpell" Type="Self.ImbuedItemSpell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spell_Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImbuedItemSpell">
+              <PropertyRef Name="SpellId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Spell_Arc__Spell__4589517F">
+          <End Role="Spell_Table" Type="Self.Spell_Table" Multiplicity="1" />
+          <End Role="Spell_Arcana_Table" Type="Self.Spell_Arcana_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spell_Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Spell_Arcana_Table">
+              <PropertyRef Name="Spell_Table_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WoDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ammoes" EntityType="Self.Ammo" />
+          <EntitySet Name="Arcana_Table" EntityType="Self.Arcana_Table" />
+          <EntitySet Name="ArmorTables" EntityType="Self.ArmorTable" />
+          <EntitySet Name="Artifact_Table" EntityType="Self.Artifact_Table" />
+          <EntitySet Name="Attainment_Table" EntityType="Self.Attainment_Table" />
+          <EntitySet Name="Ceremonies" EntityType="Self.Ceremony" />
+          <EntitySet Name="Character_Equipment" EntityType="Self.Character_Equipment" />
+          <EntitySet Name="Character_List" EntityType="Self.Character_List" />
+          <EntitySet Name="Conditions" EntityType="Self.Condition" />
+          <EntitySet Name="Grimoire_Table" EntityType="Self.Grimoire_Table" />
+          <EntitySet Name="Haunts" EntityType="Self.Haunt" />
+          <EntitySet Name="Imbued_Table" EntityType="Self.Imbued_Table" />
+          <EntitySet Name="ImbuedItemSpells" EntityType="Self.ImbuedItemSpell" />
+          <EntitySet Name="MageCaucusInfoes" EntityType="Self.MageCaucusInfo" />
+          <EntitySet Name="MageConsiliumTitles" EntityType="Self.MageConsiliumTitle" />
+          <EntitySet Name="Mementoes" EntityType="Self.Memento" />
+          <EntitySet Name="Merits" EntityType="Self.Merit" />
+          <EntitySet Name="RefBurdens" EntityType="Self.RefBurden" />
+          <EntitySet Name="RefGeistKeys" EntityType="Self.RefGeistKey" />
+          <EntitySet Name="Sight_Table" EntityType="Self.Sight_Table" />
+          <EntitySet Name="Skill_Table" EntityType="Self.Skill_Table" />
+          <EntitySet Name="Spell_Arcana_Table" EntityType="Self.Spell_Arcana_Table" />
+          <EntitySet Name="Spell_Table" EntityType="Self.Spell_Table" />
+          <EntitySet Name="Tilts" EntityType="Self.Tilt" />
+          <EntitySet Name="Vampire_Coils" EntityType="Self.Vampire_Coils" />
+          <EntitySet Name="Vampire_Cruac" EntityType="Self.Vampire_Cruac" />
+          <EntitySet Name="Vampire_Devotion" EntityType="Self.Vampire_Devotion" />
+          <EntitySet Name="Vampire_Disciplines" EntityType="Self.Vampire_Disciplines" />
+          <EntitySet Name="Vampire_Sorcery" EntityType="Self.Vampire_Sorcery" />
+          <AssociationSet Name="FK_dbo_Character_Equipment_dbo_Ammo_ammoId" Association="Self.FK_dbo_Character_Equipment_dbo_Ammo_ammoId">
+            <End Role="Ammo" EntitySet="Ammoes" />
+            <End Role="Character_Equipment" EntitySet="Character_Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Artifact_Table_Character_List" Association="Self.FK_Artifact_Table_Character_List">
+            <End Role="Character_List" EntitySet="Character_List" />
+            <End Role="Artifact_Table" EntitySet="Artifact_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Character_Equipment_dbo_Character_List_characterId" Association="Self.FK_dbo_Character_Equipment_dbo_Character_List_characterId">
+            <End Role="Character_List" EntitySet="Character_List" />
+            <End Role="Character_Equipment" EntitySet="Character_Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grimoire_Table_Character_List" Association="Self.FK_Grimoire_Table_Character_List">
+            <End Role="Character_List" EntitySet="Character_List" />
+            <End Role="Grimoire_Table" EntitySet="Grimoire_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imbued_Table_Character_List" Association="Self.FK_Imbued_Table_Character_List">
+            <End Role="Character_List" EntitySet="Character_List" />
+            <End Role="Imbued_Table" EntitySet="Imbued_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImbuedItemSpell_Imbued_Table" Association="Self.FK_ImbuedItemSpell_Imbued_Table">
+            <End Role="Imbued_Table" EntitySet="Imbued_Table" />
+            <End Role="ImbuedItemSpell" EntitySet="ImbuedItemSpells" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImbuedItemSpell_Spell_Table" Association="Self.FK_ImbuedItemSpell_Spell_Table">
+            <End Role="Spell_Table" EntitySet="Spell_Table" />
+            <End Role="ImbuedItemSpell" EntitySet="ImbuedItemSpells" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Spell_Arc__Spell__4589517F" Association="Self.FK__Spell_Arc__Spell__4589517F">
+            <End Role="Spell_Table" EntitySet="Spell_Table" />
+            <End Role="Spell_Arcana_Table" EntitySet="Spell_Arcana_Table" />
+          </AssociationSet>
+          <EntitySet Name="Rote_Table" EntityType="WoDModel.Rote_Table" />
+          <AssociationSet Name="FK_Rote_Table_Grimoire_Table" Association="WoDModel.FK_Rote_Table_Grimoire_Table">
+            <End Role="Grimoire_Table" EntitySet="Grimoire_Table" />
+            <End Role="Rote_Table" EntitySet="Rote_Table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rote_Table_Spell_Table" Association="WoDModel.FK_Rote_Table_Spell_Table">
+            <End Role="Spell_Table" EntitySet="Spell_Table" />
+            <End Role="Rote_Table" EntitySet="Rote_Table" />
+          </AssociationSet>
+          <EntitySet Name="Skills" EntityType="WoDModel.Skill" />
+          <AssociationSet Name="FK_Rote_Table_Skills" Association="WoDModel.FK_Rote_Table_Skills">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="Rote_Table" EntitySet="Rote_Table" />
+          </AssociationSet>
+          <EntitySet Name="MageOrders" EntityType="WoDModel.MageOrder" />
+          <AssociationSet Name="FK_MageCaucusInfo_MageOrder" Association="WoDModel.FK_MageCaucusInfo_MageOrder">
+            <End Role="MageOrder" EntitySet="MageOrders" />
+            <End Role="MageCaucusInfo" EntitySet="MageCaucusInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MageOrder_Skills" Association="WoDModel.FK_MageOrder_Skills">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="MageOrder" EntitySet="MageOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MageOrder_Skills1" Association="WoDModel.FK_MageOrder_Skills1">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="MageOrder" EntitySet="MageOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MageOrder_Skills2" Association="WoDModel.FK_MageOrder_Skills2">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="MageOrder" EntitySet="MageOrders" />
+          </AssociationSet>
+          <EntitySet Name="MagePaths" EntityType="WoDModel.MagePath" />
+          <EntitySet Name="RefLegacies" EntityType="WoDModel.RefLegacy" />
+          <AssociationSet Name="FK_RefLegacy_Arcana_Table" Association="WoDModel.FK_RefLegacy_Arcana_Table">
+            <End Role="Arcana_Table" EntitySet="Arcana_Table" />
+            <End Role="RefLegacy" EntitySet="RefLegacies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefLegacy_Arcana_Table1" Association="WoDModel.FK_RefLegacy_Arcana_Table1">
+            <End Role="Arcana_Table" EntitySet="Arcana_Table" />
+            <End Role="RefLegacy" EntitySet="RefLegacies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefLegacy_MageOrder" Association="WoDModel.FK_RefLegacy_MageOrder">
+            <End Role="MageOrder" EntitySet="MageOrders" />
+            <End Role="RefLegacy" EntitySet="RefLegacies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefLegacy_MageOrder1" Association="WoDModel.FK_RefLegacy_MageOrder1">
+            <End Role="MageOrder" EntitySet="MageOrders" />
+            <End Role="RefLegacy" EntitySet="RefLegacies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefLegacy_MagePath" Association="WoDModel.FK_RefLegacy_MagePath">
+            <End Role="MagePath" EntitySet="MagePaths" />
+            <End Role="RefLegacy" EntitySet="RefLegacies" />
+          </AssociationSet>
+          <EntitySet Name="ArtifactAttainments" EntityType="WoDModel.ArtifactAttainment" />
+          <EntitySet Name="ItemEnhancements" EntityType="WoDModel.ItemEnhancement" />
+          <EntitySet Name="RefEnhancements" EntityType="WoDModel.RefEnhancement" />
+          <AssociationSet Name="FK_ArtifactAttainment_Artifact_Table" Association="WoDModel.FK_ArtifactAttainment_Artifact_Table">
+            <End Role="Artifact_Table" EntitySet="Artifact_Table" />
+            <End Role="ArtifactAttainment" EntitySet="ArtifactAttainments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArtifactAttainment_Attainment_Table" Association="WoDModel.FK_ArtifactAttainment_Attainment_Table">
+            <End Role="Attainment_Table" EntitySet="Attainment_Table" />
+            <End Role="ArtifactAttainment" EntitySet="ArtifactAttainments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemEnhancement_Imbued_Table" Association="WoDModel.FK_ItemEnhancement_Imbued_Table">
+            <End Role="Imbued_Table" EntitySet="Imbued_Table" />
+            <End Role="ItemEnhancement" EntitySet="ItemEnhancements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemEnhancement_RefEnhancement" Association="WoDModel.FK_ItemEnhancement_RefEnhancement">
+            <End Role="RefEnhancement" EntitySet="RefEnhancements" />
+            <End Role="ItemEnhancement" EntitySet="ItemEnhancements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemEnhancement_Spell_Table" Association="WoDModel.FK_ItemEnhancement_Spell_Table">
+            <End Role="Spell_Table" EntitySet="Spell_Table" />
+            <End Role="ItemEnhancement" EntitySet="ItemEnhancements" />
+          </AssociationSet>
+          <EntitySet Name="Attribute_Table" EntityType="WoDModel.Attribute_Table" />
+          <EntitySet Name="FetishTable" EntityType="WoDModel.FetishTable" />
+          <EntitySet Name="SpellView" EntityType="WoDModel.SpellView" />
+          </EntityContainer>
+        <EntityType Name="Rote_Table">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GrimoireID" Type="Int32" Nullable="false" />
+          <Property Name="SpellTableID" Type="Int32" Nullable="false" />
+          <Property Name="SkillID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Grimoire_Table" Relationship="WoDModel.FK_Rote_Table_Grimoire_Table" FromRole="Rote_Table" ToRole="Grimoire_Table" />
+          <NavigationProperty Name="Spell_Table" Relationship="WoDModel.FK_Rote_Table_Spell_Table" FromRole="Rote_Table" ToRole="Spell_Table" />
+          <NavigationProperty Name="Skill" Relationship="WoDModel.FK_Rote_Table_Skills" FromRole="Rote_Table" ToRole="Skill" />
+        </EntityType>
+        <Association Name="FK_Rote_Table_Grimoire_Table">
+          <End Type="WoDModel.Grimoire_Table" Role="Grimoire_Table" Multiplicity="1" />
+          <End Type="WoDModel.Rote_Table" Role="Rote_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grimoire_Table">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Rote_Table">
+              <PropertyRef Name="GrimoireID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rote_Table_Spell_Table">
+          <End Type="WoDModel.Spell_Table" Role="Spell_Table" Multiplicity="1" />
+          <End Type="WoDModel.Rote_Table" Role="Rote_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spell_Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rote_Table">
+              <PropertyRef Name="SpellTableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="skillId" />
+          </Key>
+          <Property Name="skillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="skill_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="category" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Rote_Table" Relationship="WoDModel.FK_Rote_Table_Skills" FromRole="Skill" ToRole="Rote_Table" />
+          <NavigationProperty Name="MageOrders" Relationship="WoDModel.FK_MageOrder_Skills" FromRole="Skill" ToRole="MageOrder" />
+          <NavigationProperty Name="MageOrders1" Relationship="WoDModel.FK_MageOrder_Skills1" FromRole="Skill" ToRole="MageOrder" />
+          <NavigationProperty Name="MageOrders2" Relationship="WoDModel.FK_MageOrder_Skills2" FromRole="Skill" ToRole="MageOrder" />
+        </EntityType>
+        <Association Name="FK_Rote_Table_Skills">
+          <End Type="WoDModel.Skill" Role="Skill" Multiplicity="1" />
+          <End Type="WoDModel.Rote_Table" Role="Rote_Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="skillId" />
+            </Principal>
+            <Dependent Role="Rote_Table">
+              <PropertyRef Name="SkillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MageOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RoteSpecialty1" Type="Int32" />
+          <Property Name="RoteSpecialty2" Type="Int32" />
+          <Property Name="RoteSpecialty3" Type="Int32" />
+          <NavigationProperty Name="MageCaucusInfoes" Relationship="WoDModel.FK_MageCaucusInfo_MageOrder" FromRole="MageOrder" ToRole="MageCaucusInfo" />
+          <NavigationProperty Name="Skill" Relationship="WoDModel.FK_MageOrder_Skills" FromRole="MageOrder" ToRole="Skill" />
+          <NavigationProperty Name="Skill1" Relationship="WoDModel.FK_MageOrder_Skills1" FromRole="MageOrder" ToRole="Skill" />
+          <NavigationProperty Name="Skill2" Relationship="WoDModel.FK_MageOrder_Skills2" FromRole="MageOrder" ToRole="Skill" />
+          <NavigationProperty Name="RefLegacies" Relationship="WoDModel.FK_RefLegacy_MageOrder" FromRole="MageOrder" ToRole="RefLegacy" />
+          <NavigationProperty Name="RefLegacies1" Relationship="WoDModel.FK_RefLegacy_MageOrder1" FromRole="MageOrder" ToRole="RefLegacy" />
+          </EntityType>
+        <Association Name="FK_MageCaucusInfo_MageOrder">
+          <End Type="WoDModel.MageOrder" Role="MageOrder" Multiplicity="1" />
+          <End Type="WoDModel.MageCaucusInfo" Role="MageCaucusInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MageOrder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MageCaucusInfo">
+              <PropertyRef Name="MageOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MageOrder_Skills">
+          <End Type="WoDModel.Skill" Role="Skill" Multiplicity="0..1" />
+          <End Type="WoDModel.MageOrder" Role="MageOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="skillId" />
+            </Principal>
+            <Dependent Role="MageOrder">
+              <PropertyRef Name="RoteSpecialty1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MageOrder_Skills1">
+          <End Type="WoDModel.Skill" Role="Skill" Multiplicity="0..1" />
+          <End Type="WoDModel.MageOrder" Role="MageOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="skillId" />
+            </Principal>
+            <Dependent Role="MageOrder">
+              <PropertyRef Name="RoteSpecialty3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MageOrder_Skills2">
+          <End Type="WoDModel.Skill" Role="Skill" Multiplicity="0..1" />
+          <End Type="WoDModel.MageOrder" Role="MageOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="skillId" />
+            </Principal>
+            <Dependent Role="MageOrder">
+              <PropertyRef Name="RoteSpecialty2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MagePath">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstRulingArcana" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SecondRulingArcana" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RefLegacies" Relationship="WoDModel.FK_RefLegacy_MagePath" FromRole="MagePath" ToRole="RefLegacy" />
+        </EntityType>
+        <EntityType Name="RefLegacy">
+          <Key>
+            <PropertyRef Name="LegacyId" />
+          </Key>
+          <Property Name="LegacyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PathId" Type="Int32" />
+          <Property Name="OrderId" Type="Int32" />
+          <Property Name="SecondOrderId" Type="Int32" />
+          <Property Name="RulingArcana" Type="Int32" Nullable="false" />
+          <Property Name="SecondaryArcana" Type="Int32" />
+          <Property Name="LegacyName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LeftHanded" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Arcana_Table" Relationship="WoDModel.FK_RefLegacy_Arcana_Table" FromRole="RefLegacy" ToRole="Arcana_Table" />
+          <NavigationProperty Name="Arcana_Table1" Relationship="WoDModel.FK_RefLegacy_Arcana_Table1" FromRole="RefLegacy" ToRole="Arcana_Table" />
+          <NavigationProperty Name="MageOrder" Relationship="WoDModel.FK_RefLegacy_MageOrder" FromRole="RefLegacy" ToRole="MageOrder" />
+          <NavigationProperty Name="MageOrder1" Relationship="WoDModel.FK_RefLegacy_MageOrder1" FromRole="RefLegacy" ToRole="MageOrder" />
+          <NavigationProperty Name="MagePath" Relationship="WoDModel.FK_RefLegacy_MagePath" FromRole="RefLegacy" ToRole="MagePath" />
+        </EntityType>
+        <Association Name="FK_RefLegacy_Arcana_Table">
+          <End Type="WoDModel.Arcana_Table" Role="Arcana_Table" Multiplicity="1" />
+          <End Type="WoDModel.RefLegacy" Role="RefLegacy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arcana_Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RefLegacy">
+              <PropertyRef Name="RulingArcana" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefLegacy_Arcana_Table1">
+          <End Type="WoDModel.Arcana_Table" Role="Arcana_Table" Multiplicity="0..1" />
+          <End Type="WoDModel.RefLegacy" Role="RefLegacy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arcana_Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RefLegacy">
+              <PropertyRef Name="SecondaryArcana" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefLegacy_MageOrder">
+          <End Type="WoDModel.MageOrder" Role="MageOrder" Multiplicity="0..1" />
+          <End Type="WoDModel.RefLegacy" Role="RefLegacy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MageOrder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RefLegacy">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefLegacy_MageOrder1">
+          <End Type="WoDModel.MageOrder" Role="MageOrder" Multiplicity="0..1" />
+          <End Type="WoDModel.RefLegacy" Role="RefLegacy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MageOrder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RefLegacy">
+              <PropertyRef Name="SecondOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefLegacy_MagePath">
+          <End Type="WoDModel.MagePath" Role="MagePath" Multiplicity="0..1" />
+          <End Type="WoDModel.RefLegacy" Role="RefLegacy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MagePath">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RefLegacy">
+              <PropertyRef Name="PathId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ArtifactAttainment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttainmentId" Type="Int32" Nullable="false" />
+          <Property Name="ArtifactId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Artifact_Table" Relationship="WoDModel.FK_ArtifactAttainment_Artifact_Table" FromRole="ArtifactAttainment" ToRole="Artifact_Table" />
+          <NavigationProperty Name="Attainment_Table" Relationship="WoDModel.FK_ArtifactAttainment_Attainment_Table" FromRole="ArtifactAttainment" ToRole="Attainment_Table" />
+        </EntityType>
+        <EntityType Name="ItemEnhancement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImbuedItemId" Type="Int32" />
+          <Property Name="EnhancedItemId" Type="Int32" />
+          <Property Name="EnhancementId" Type="Int32" />
+          <Property Name="Enhancement" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EnhancementCost" Type="Int32" Nullable="false" />
+          <Property Name="SpellId" Type="Int32" />
+          <NavigationProperty Name="Imbued_Table" Relationship="WoDModel.FK_ItemEnhancement_Imbued_Table" FromRole="ItemEnhancement" ToRole="Imbued_Table" />
+          <NavigationProperty Name="RefEnhancement" Relationship="WoDModel.FK_ItemEnhancement_RefEnhancement" FromRole="ItemEnhancement" ToRole="RefEnhancement" />
+          <NavigationProperty Name="Spell_Table" Relationship="WoDModel.FK_ItemEnhancement_Spell_Table" FromRole="ItemEnhancement" ToRole="Spell_Table" />
+        </EntityType>
+        <EntityType Name="RefEnhancement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bonus" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Cost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ItemEnhancements" Relationship="WoDModel.FK_ItemEnhancement_RefEnhancement" FromRole="RefEnhancement" ToRole="ItemEnhancement" />
+        </EntityType>
+        <Association Name="FK_ArtifactAttainment_Artifact_Table">
+          <End Type="WoDModel.Artifact_Table" Role="Artifact_Table" Multiplicity="1" />
+          <End Type="WoDModel.ArtifactAttainment" Role="ArtifactAttainment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artifact_Table">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ArtifactAttainment">
+              <PropertyRef Name="ArtifactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArtifactAttainment_Attainment_Table">
+          <End Type="WoDModel.Attainment_Table" Role="Attainment_Table" Multiplicity="1" />
+          <End Type="WoDModel.ArtifactAttainment" Role="ArtifactAttainment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attainment_Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArtifactAttainment">
+              <PropertyRef Name="AttainmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemEnhancement_Imbued_Table">
+          <End Type="WoDModel.Imbued_Table" Role="Imbued_Table" Multiplicity="0..1" />
+          <End Type="WoDModel.ItemEnhancement" Role="ItemEnhancement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Imbued_Table">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ItemEnhancement">
+              <PropertyRef Name="ImbuedItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemEnhancement_RefEnhancement">
+          <End Type="WoDModel.RefEnhancement" Role="RefEnhancement" Multiplicity="0..1" />
+          <End Type="WoDModel.ItemEnhancement" Role="ItemEnhancement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RefEnhancement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemEnhancement">
+              <PropertyRef Name="EnhancementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemEnhancement_Spell_Table">
+          <End Type="WoDModel.Spell_Table" Role="Spell_Table" Multiplicity="0..1" />
+          <End Type="WoDModel.ItemEnhancement" Role="ItemEnhancement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spell_Table">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemEnhancement">
+              <PropertyRef Name="SpellId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Attribute_Table">
+          <Key>
+            <PropertyRef Name="attributeId" />
+          </Key>
+          <Property Name="attributeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="attribute_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FetishTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Effect" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="Talen" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpellView">
+          <Key>
+            <PropertyRef Name="Spell_Name" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Arcana" />
+            <PropertyRef Name="Level" />
+          </Key>
+          <Property Name="Spell_Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Arcana" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="Byte" Nullable="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WoDModelStoreContainer" CdmEntityContainer="WoDEntities">
+          <EntitySetMapping Name="Ammoes">
+            <EntityTypeMapping TypeName="WoDModel.Ammo">
+              <MappingFragment StoreEntitySet="Ammo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="equipmentId" ColumnName="equipmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Arcana_Table">
+            <EntityTypeMapping TypeName="WoDModel.Arcana_Table">
+              <MappingFragment StoreEntitySet="Arcana_Table">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="arcana" ColumnName="arcana" />
+                <ScalarProperty Name="Purview" ColumnName="Purview" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArmorTables">
+            <EntityTypeMapping TypeName="WoDModel.ArmorTable">
+              <MappingFragment StoreEntitySet="ArmorTable">
+                <ScalarProperty Name="ArmorId" ColumnName="ArmorId" />
+                <ScalarProperty Name="ArmorName" ColumnName="ArmorName" />
+                <ScalarProperty Name="GeneralArmor" ColumnName="GeneralArmor" />
+                <ScalarProperty Name="BulletArmor" ColumnName="BulletArmor" />
+                <ScalarProperty Name="Degrade" ColumnName="Degrade" />
+                <ScalarProperty Name="RangedDefense" ColumnName="RangedDefense" />
+                <ScalarProperty Name="Supernatural" ColumnName="Supernatural" />
+                <ScalarProperty Name="BonusHealth" ColumnName="BonusHealth" />
+                <ScalarProperty Name="BonusDefense" ColumnName="BonusDefense" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Artifact_Table">
+            <EntityTypeMapping TypeName="WoDModel.Artifact_Table">
+              <MappingFragment StoreEntitySet="Artifact_Table">
+                <ScalarProperty Name="YantraBonus" ColumnName="YantraBonus" />
+                <ScalarProperty Name="ImperialSurcharge" ColumnName="ImperialSurcharge" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Reach" ColumnName="Reach" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Mana" ColumnName="Mana" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Gnosis" ColumnName="Gnosis" />
+                <ScalarProperty Name="CharacterId" ColumnName="CharacterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attainment_Table">
+            <EntityTypeMapping TypeName="WoDModel.Attainment_Table">
+              <MappingFragment StoreEntitySet="Attainment_Table">
+                <ScalarProperty Name="ItemUsable" ColumnName="ItemUsable" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="attainment_name" ColumnName="attainment_name" />
+                <ScalarProperty Name="attainment_arcana" ColumnName="attainment_arcana" />
+                <ScalarProperty Name="attainment_level" ColumnName="attainment_level" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ceremonies">
+            <EntityTypeMapping TypeName="WoDModel.Ceremony">
+              <MappingFragment StoreEntitySet="Ceremonies">
+                <ScalarProperty Name="CeremonyId" ColumnName="CeremonyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Requirement" ColumnName="Requirement" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Symbols" ColumnName="Symbols" />
+                <ScalarProperty Name="Ritual" ColumnName="Ritual" />
+                <ScalarProperty Name="Success" ColumnName="Success" />
+                <ScalarProperty Name="DiePool" ColumnName="DiePool" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Character_Equipment">
+            <EntityTypeMapping TypeName="WoDModel.Character_Equipment">
+              <MappingFragment StoreEntitySet="Character_Equipment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="characterId" ColumnName="characterId" />
+                <ScalarProperty Name="equipmentId" ColumnName="equipmentId" />
+                <ScalarProperty Name="current_ammo" ColumnName="current_ammo" />
+                <ScalarProperty Name="ammoId" ColumnName="ammoId" />
+                <ScalarProperty Name="equipped" ColumnName="equipped" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Character_List">
+            <EntityTypeMapping TypeName="WoDModel.Character_List">
+              <MappingFragment StoreEntitySet="Character_List">
+                <ScalarProperty Name="characterId" ColumnName="characterId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conditions">
+            <EntityTypeMapping TypeName="WoDModel.Condition">
+              <MappingFragment StoreEntitySet="Condition">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Effect" ColumnName="Effect" />
+                <ScalarProperty Name="Beat" ColumnName="Beat" />
+                <ScalarProperty Name="Resolution" ColumnName="Resolution" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grimoire_Table">
+            <EntityTypeMapping TypeName="WoDModel.Grimoire_Table">
+              <MappingFragment StoreEntitySet="Grimoire_Table">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Haunts">
+            <EntityTypeMapping TypeName="WoDModel.Haunt">
+              <MappingFragment StoreEntitySet="Haunts">
+                <ScalarProperty Name="HauntId" ColumnName="HauntId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AbilityOne" ColumnName="AbilityOne" />
+                <ScalarProperty Name="AbilityTwo" ColumnName="AbilityTwo" />
+                <ScalarProperty Name="AbilityThree" ColumnName="AbilityThree" />
+                <ScalarProperty Name="AbilityFour" ColumnName="AbilityFour" />
+                <ScalarProperty Name="AbilityFive" ColumnName="AbilityFive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Imbued_Table">
+            <EntityTypeMapping TypeName="WoDModel.Imbued_Table">
+              <MappingFragment StoreEntitySet="Imbued_Table">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Spell_Level" ColumnName="Spell_Level" />
+                <ScalarProperty Name="Battery_Dots" ColumnName="Battery_Dots" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
+                <ScalarProperty Name="Mana" ColumnName="Mana" />
+                <ScalarProperty Name="CurrentCharge" ColumnName="CurrentCharge" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImbuedItemSpells">
+            <EntityTypeMapping TypeName="WoDModel.ImbuedItemSpell">
+              <MappingFragment StoreEntitySet="ImbuedItemSpell">
+                <ScalarProperty Name="ImbuedItemSpellId" ColumnName="ImbuedItemSpellId" />
+                <ScalarProperty Name="ImbuedItemId" ColumnName="ImbuedItemId" />
+                <ScalarProperty Name="SpellId" ColumnName="SpellId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MageCaucusInfoes">
+            <EntityTypeMapping TypeName="WoDModel.MageCaucusInfo">
+              <MappingFragment StoreEntitySet="MageCaucusInfo">
+                <ScalarProperty Name="MageCaucusId" ColumnName="MageCaucusId" />
+                <ScalarProperty Name="MageOrder" ColumnName="MageOrder" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MageConsiliumTitles">
+            <EntityTypeMapping TypeName="WoDModel.MageConsiliumTitle">
+              <MappingFragment StoreEntitySet="MageConsiliumTitles">
+                <ScalarProperty Name="MinGnosis" ColumnName="MinGnosis" />
+                <ScalarProperty Name="MaxNumber" ColumnName="MaxNumber" />
+                <ScalarProperty Name="UniqueTitle" ColumnName="UniqueTitle" />
+                <ScalarProperty Name="LargeEssential" ColumnName="LargeEssential" />
+                <ScalarProperty Name="MediumEssential" ColumnName="MediumEssential" />
+                <ScalarProperty Name="SmallEssential" ColumnName="SmallEssential" />
+                <ScalarProperty Name="ConsiliumTitleId" ColumnName="ConsiliumTitleId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mementoes">
+            <EntityTypeMapping TypeName="WoDModel.Memento">
+              <MappingFragment StoreEntitySet="Memento">
+                <ScalarProperty Name="MementoId" ColumnName="MementoId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="InnateKey" ColumnName="InnateKey" />
+                <ScalarProperty Name="Effect" ColumnName="Effect" />
+                <ScalarProperty Name="Durability" ColumnName="Durability" />
+                <ScalarProperty Name="Structure" ColumnName="Structure" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Armor" ColumnName="Armor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Merits">
+            <EntityTypeMapping TypeName="WoDModel.Merit">
+              <MappingFragment StoreEntitySet="Merits">
+                <ScalarProperty Name="MeritId" ColumnName="MeritId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+                <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+                <ScalarProperty Name="Leveled" ColumnName="Leveled" />
+                <ScalarProperty Name="LevelStart" ColumnName="LevelStart" />
+                <ScalarProperty Name="Multiple" ColumnName="Multiple" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RefBurdens">
+            <EntityTypeMapping TypeName="WoDModel.RefBurden">
+              <MappingFragment StoreEntitySet="RefBurden">
+                <ScalarProperty Name="Burden" ColumnName="Burden" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RefGeistKeys">
+            <EntityTypeMapping TypeName="WoDModel.RefGeistKey">
+              <MappingFragment StoreEntitySet="RefGeistKey">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+                <ScalarProperty Name="Doom" ColumnName="Doom" />
+                <ScalarProperty Name="Resonance" ColumnName="Resonance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sight_Table">
+            <EntityTypeMapping TypeName="WoDModel.Sight_Table">
+              <MappingFragment StoreEntitySet="Sight_Table">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skill_Table">
+            <EntityTypeMapping TypeName="WoDModel.Skill_Table">
+              <MappingFragment StoreEntitySet="Skill_Table">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Spell_Arcana_Table">
+            <EntityTypeMapping TypeName="WoDModel.Spell_Arcana_Table">
+              <MappingFragment StoreEntitySet="Spell_Arcana_Table">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Spell_Table_ID" ColumnName="Spell_Table_ID" />
+                <ScalarProperty Name="Arcana" ColumnName="Arcana" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Spell_Table">
+            <EntityTypeMapping TypeName="WoDModel.Spell_Table">
+              <MappingFragment StoreEntitySet="Spell_Table">
+                <ScalarProperty Name="Spell_Name" ColumnName="Spell_Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PrimaryFactor" ColumnName="PrimaryFactor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tilts">
+            <EntityTypeMapping TypeName="WoDModel.Tilt">
+              <MappingFragment StoreEntitySet="Tilt">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Effect" ColumnName="Effect" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Cause" ColumnName="Cause" />
+                <ScalarProperty Name="Resolution" ColumnName="Resolution" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vampire_Coils">
+            <EntityTypeMapping TypeName="WoDModel.Vampire_Coils">
+              <MappingFragment StoreEntitySet="Vampire_Coils">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Coil" ColumnName="Coil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vampire_Cruac">
+            <EntityTypeMapping TypeName="WoDModel.Vampire_Cruac">
+              <MappingFragment StoreEntitySet="Vampire_Cruac">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vampire_Devotion">
+            <EntityTypeMapping TypeName="WoDModel.Vampire_Devotion">
+              <MappingFragment StoreEntitySet="Vampire_Devotion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Effect" ColumnName="Effect" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vampire_Disciplines">
+            <EntityTypeMapping TypeName="WoDModel.Vampire_Disciplines">
+              <MappingFragment StoreEntitySet="Vampire_Disciplines">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Discipline" ColumnName="Discipline" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vampire_Sorcery">
+            <EntityTypeMapping TypeName="WoDModel.Vampire_Sorcery">
+              <MappingFragment StoreEntitySet="Vampire_Sorcery">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rote_Table">
+            <EntityTypeMapping TypeName="WoDModel.Rote_Table">
+              <MappingFragment StoreEntitySet="Rote_Table">
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+                <ScalarProperty Name="SpellTableID" ColumnName="SpellTableID" />
+                <ScalarProperty Name="GrimoireID" ColumnName="GrimoireID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="WoDModel.Skill">
+              <MappingFragment StoreEntitySet="Skills">
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="skill_name" ColumnName="skill_name" />
+                <ScalarProperty Name="skillId" ColumnName="skillId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MageOrders">
+            <EntityTypeMapping TypeName="WoDModel.MageOrder">
+              <MappingFragment StoreEntitySet="MageOrder">
+                <ScalarProperty Name="RoteSpecialty3" ColumnName="RoteSpecialty3" />
+                <ScalarProperty Name="RoteSpecialty2" ColumnName="RoteSpecialty2" />
+                <ScalarProperty Name="RoteSpecialty1" ColumnName="RoteSpecialty1" />
+                <ScalarProperty Name="OrderName" ColumnName="OrderName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MagePaths">
+            <EntityTypeMapping TypeName="WoDModel.MagePath">
+              <MappingFragment StoreEntitySet="MagePath">
+                <ScalarProperty Name="SecondRulingArcana" ColumnName="SecondRulingArcana" />
+                <ScalarProperty Name="FirstRulingArcana" ColumnName="FirstRulingArcana" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RefLegacies">
+            <EntityTypeMapping TypeName="WoDModel.RefLegacy">
+              <MappingFragment StoreEntitySet="RefLegacy">
+                <ScalarProperty Name="LeftHanded" ColumnName="LeftHanded" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LegacyName" ColumnName="LegacyName" />
+                <ScalarProperty Name="SecondaryArcana" ColumnName="SecondaryArcana" />
+                <ScalarProperty Name="RulingArcana" ColumnName="RulingArcana" />
+                <ScalarProperty Name="SecondOrderId" ColumnName="SecondOrderId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="PathId" ColumnName="PathId" />
+                <ScalarProperty Name="LegacyId" ColumnName="LegacyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArtifactAttainments">
+            <EntityTypeMapping TypeName="WoDModel.ArtifactAttainment">
+              <MappingFragment StoreEntitySet="ArtifactAttainment">
+                <ScalarProperty Name="ArtifactId" ColumnName="ArtifactId" />
+                <ScalarProperty Name="AttainmentId" ColumnName="AttainmentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemEnhancements">
+            <EntityTypeMapping TypeName="WoDModel.ItemEnhancement">
+              <MappingFragment StoreEntitySet="ItemEnhancement">
+                <ScalarProperty Name="SpellId" ColumnName="SpellId" />
+                <ScalarProperty Name="EnhancementCost" ColumnName="EnhancementCost" />
+                <ScalarProperty Name="Enhancement" ColumnName="Enhancement" />
+                <ScalarProperty Name="EnhancementId" ColumnName="EnhancementId" />
+                <ScalarProperty Name="EnhancedItemId" ColumnName="EnhancedItemId" />
+                <ScalarProperty Name="ImbuedItemId" ColumnName="ImbuedItemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RefEnhancements">
+            <EntityTypeMapping TypeName="WoDModel.RefEnhancement">
+              <MappingFragment StoreEntitySet="RefEnhancement">
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attribute_Table">
+            <EntityTypeMapping TypeName="WoDModel.Attribute_Table">
+              <MappingFragment StoreEntitySet="Attribute_Table">
+                <ScalarProperty Name="attribute_name" ColumnName="attribute_name" />
+                <ScalarProperty Name="attributeId" ColumnName="attributeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FetishTable">
+            <EntityTypeMapping TypeName="WoDModel.FetishTable">
+              <MappingFragment StoreEntitySet="FetishTable">
+                <ScalarProperty Name="Talen" ColumnName="Talen" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Effect" ColumnName="Effect" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpellView">
+            <EntityTypeMapping TypeName="WoDModel.SpellView">
+              <MappingFragment StoreEntitySet="SpellView">
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Arcana" ColumnName="Arcana" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Spell_Name" ColumnName="Spell_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

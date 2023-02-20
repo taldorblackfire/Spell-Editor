@@ -1,0 +1,29 @@
+﻿@using HtmlHelpers.BeginCollectionItem;
+@model Spell_Editor.Models.ItemEnhancement
+
+@using (Html.BeginCollectionItem("ItemEnhancement"))
+{
+    @Html.HiddenFor(model => model.EnhancedItemId)
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.EnhancementCost)
+    @Html.HiddenFor(model => model.ImbuedItemId)
+    <div id="enhancementRow">
+        <div class="form-horizontal">
+            <div id="bonusRow" class="form-group">
+                <label class="control-label col-md-4" style="display: inline-block; text-align: right;">Bonus</label>
+                <div class="col-md-8" style="display: inline-block;">
+                    @Html.DropDownListFor(model => model.EnhancementId, (SelectList)ViewBag.Enhancement, "", new { @class = "form-control enhancementSelect" })
+                </div>
+            </div>
+            <div id="spellRow" class="form-group">
+                <label class="control-label col-md-4" style="display: inline-block; text-align: right;">Spell</label>
+                <div class="col-md-8" style="display: inline-block;">
+                    @Html.DropDownListFor(m => m.SpellId, (SelectList)ViewBag.Spell, "", new { @class = "form-control enhancementSelect" })
+                </div>
+            </div>
+            <p style="margin-left: 30%;">
+                <a href="#" class="deleteRow">Delete Enhancement</a>
+            </p>
+        </div>
+    </div>
+}

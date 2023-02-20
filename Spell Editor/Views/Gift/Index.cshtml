@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Spell_Editor.Models.RefShadowGift>
+
+@{
+    ViewBag.Title = "Gifts";
+}
+
+<h2>Gifts</h2>
+
+<p>@Html.ActionLink("Create New Shadow Gift", "Create")</p>
+<table id="GiftTable" class="webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Name</th>
+            <th>Category</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="webgrid-row-style">
+                <td>@item.GiftName (@item.RefRenown.Renown)</td>
+                <td>@item.RefShadowGiftCategory.CategoryName</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.RefGiftsId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.RefGiftsId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.RefGiftsId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#GiftTable').DataTable();
+    </script>
+}

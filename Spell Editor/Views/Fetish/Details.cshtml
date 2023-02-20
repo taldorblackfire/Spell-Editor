@@ -1,0 +1,38 @@
+﻿@model Spell_Editor.Models.FetishTable
+
+@{
+    ViewBag.Title = "Fetish/Talen Details";
+}
+
+<h2 style="text-align: center;">Fetish/Talen Details</h2>
+
+<div class="form-horizontal">
+    <h4 style="text-align: center;">@Model.Name</h4>
+    <hr />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Effect, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea id="Effect" name="Effect" rows="15" class="form-control" cols="110" disabled>@Model.Effect</textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.Rating, Enumerable.Range(1, 5).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), htmlAttributes: new { @class = "form-control", @disabled = true })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Talen?</label>
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Talen, new { htmlAttributes = new { @class = "form-control no-border move-left", @disabled = true } })
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

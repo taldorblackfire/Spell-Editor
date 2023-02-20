@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Spell_Editor.Models.Manifestations_Table>
+
+@{
+    ViewBag.Title = "Manifestations";
+}
+
+<h2>@ViewBag.Id Manifestations</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create") |
+    @Html.ActionLink("Back To List", "Index")
+</p>
+<table id="ManifestationTable" class="table webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="webgrid-row-style">
+                <td>@item.name</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#ManifestationTable').DataTable();
+    </script>
+}

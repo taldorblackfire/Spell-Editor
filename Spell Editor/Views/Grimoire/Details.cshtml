@@ -1,0 +1,73 @@
+﻿@model Spell_Editor.Models.GrimoireModel
+
+@{
+    ViewBag.Title = "Grimoire Details";
+}
+
+@{ 
+    List<string> list = new List<string>();
+
+    foreach(var str in ViewBag.Skills)
+    {
+        list.Add(str.Text);
+    }
+
+    string dot_rating = "";
+    for(int i = 0; i < Model.Cost; i++)
+    {
+        dot_rating = dot_rating + "\u2022";
+    }
+}
+
+<div class="form-horizontal">
+    <h4 style="text-align: center;">Grimoire Details</h4>
+    <hr />
+    <div class="form-group">
+        @if (ViewBag.Owner != "")
+        {
+            <label class="control-label col-md-6"><i>@Model.Name (Grimoire @dot_rating)</i></label>
+            <br />
+            <label class="control-label col-md-6"><i>(Current Owner @ViewBag.Owner)</i></label>
+        }
+        else
+        {
+            <label style="text-align: center;" class="control-label col-md-12"><i>@Model.Name (Grimoire @dot_rating)</i></label>
+        }
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-1">Description:</label>
+        <div class="col-md-11">
+            <textarea id="Description" name="Description" class="form-control" rows="12" readonly="readonly" cols="80">@Model.Description</textarea>
+        </div>
+    </div>
+    <h4 style="text-align: center;">Rotes Inside</h4>
+    <hr />
+    <table id="SpellTable" class="webgrid-table">
+        <thead>
+            <tr class="webgrid-header">
+                <th>Spell Name</th>
+                <th>Skill</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Spells)
+            {
+                <tr class="webgrid-row-style">
+                    <td>@item.Spell_Name</td>
+                    <td>@list[item.SkillID-1]</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#SpellTable').DataTable();
+        $("#Description").height($("#Description")[0].scrollHeight);
+    </script>
+}

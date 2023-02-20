@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Spell_Editor.Models.Condition>
+
+@{
+    ViewBag.Title = "Conditions";
+}
+
+<h2>Conditions</h2>
+
+<p>
+    @Html.ActionLink("Create New Condition", "Create")
+</p>
+<table id="ConditionTable" class="webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Name</th>
+            <th>Effect</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="webgrid-row-style">
+                <td>@item.Name</td>
+                <td>@item.Effect</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#ConditionTable').DataTable();
+    </script>
+}

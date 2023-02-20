@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Spell_Editor.Models.RefMoonGiftFacet>
+
+@{
+    ViewBag.Title = "Facets";
+}
+
+<h2>Facets</h2>
+
+<p>@Html.ActionLink("Create New Moon Facet", "Create")</p>
+<table id="FacetTable" class="webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Name</th>
+            <th>Moon Phase</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="webgrid-row-style">
+                <td>@item.MoonFacet</td>
+                <td>@item.RefMoonGift.MoonGift</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MoonGiftFacetId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MoonGiftFacetId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MoonGiftFacetId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#FacetTable').DataTable();
+    </script>
+}

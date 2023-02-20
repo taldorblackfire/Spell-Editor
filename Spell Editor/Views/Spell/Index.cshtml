@@ -1,0 +1,96 @@
+﻿@model Spell_Editor.Models.SpellListModel
+
+@{
+    ViewBag.Title = "Spells";
+}
+
+<h2>Spell Index</h2>
+
+<p>@Html.ActionLink("Create New Spell", "Create")</p>
+<table class="table" id="searchTable">
+    <thead>
+        <tr class="webgrid-header" style="text-align: center;"></tr>
+    </thead>
+    <tbody>
+        <tr class="webgrid-row-style" style="text-align: center;">
+            <td>@Html.DropDownList("Arcana", (IEnumerable<SelectListItem>)ViewBag.Arcana, "Select Arcana", htmlAttributes: new { @class = "form-control" })</td>
+            <td>@Html.DropDownList("Level", (IEnumerable<SelectListItem>)ViewBag.Levels, "Select Level", htmlAttributes: new { @class = "form-control" })</td>
+        </tr>
+    </tbody>
+</table>
+
+<table id="SpellTable" class="table webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Spell Name</th>
+            <th></th>
+            <th style="display: none;"></th>
+            <th style="display: none;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(int i = 0; i < Model.Spells.Count; i++)
+        {
+        <tr class="webgrid-row-style">
+            <td>@Html.ActionLink(Model.Spells[i].SpellName, "Details", new { id = Model.Spells[i].Id })</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { id = Model.Spells[i].Id }) | @Html.ActionLink("Delete", "Delete", new { id = Model.Spells[i].Id })</td>
+            <td style="display: none;">@Model.Spells[i].Arcana</td>
+            <td style="display: none;">@Model.Spells[i].Level</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+            var level = 1;
+            if ($('#Level option:selected').text() != "Select Level") {
+                level = parseInt($('#Level option:selected').text());
+            }
+
+            if ($('#Arcana option:selected').text() == "Select Arcana") {
+                return true;
+            }
+
+            var arcana = $('#Arcana option:selected').text().trim();
+
+            var Arcana = data[2];
+            var currentLevel = parseInt(data[3]);
+
+            var splitArcana = Arcana.split(',');
+
+            for (i = 0; i < splitArcana.length; i++) {
+                if (splitArcana[i].indexOf(arcana) >= 0) {
+                    var splitLevel = splitArcana[i].split(' ');
+                    var currentLevel = 0;
+                    if (splitLevel.length > 2) {
+                        currentLevel = parseInt(splitLevel[2]);
+                    }
+                    else {
+                        currentLevel = parseInt(splitLevel[1]);
+                    }
+                    if (currentLevel >= level) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+
+            if (currentLevel == level && Arcana == arcana) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+
+        var table = $('#SpellTable').DataTable();
+
+        $('#Arcana, #Level').change(function () {
+            table.draw();
+        });
+    </script>
+}

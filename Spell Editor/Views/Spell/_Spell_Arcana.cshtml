@@ -1,0 +1,31 @@
+﻿@using HtmlHelpers.BeginCollectionItem;
+@model Spell_Editor.Models.Spell_Arcana_Table
+
+@using (Html.BeginCollectionItem("spell_arcana"))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Spell_Table_ID)
+
+    <div id="spellRow">
+        <div id="arcanaRow" class="form-group">
+            <label class="control-label col-md-2">Arcana</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Arcana, (SelectList)ViewBag.ArcanaList, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Arcana, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div id="levelRow" class="form-group">
+            <label class="control-label col-md-2">Level</label>
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.Level, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Level, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <p style="margin-left: 30%;">
+            <a href="#" class="deleteRow" onclick="deleteFunction('@Model.Id')">Delete Arcana</a>
+        </p>
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Spell_Table_ID)
+    </div>
+}

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Spell_Editor.Models.Imbued_Table>
+
+@{
+    ViewBag.Title = "Imbued Item List";
+}
+
+<h2>Imbued Item List</h2>
+
+<p>
+    @Html.ActionLink("Create New Imbued Item", "Create")
+</p>
+<table id="ImbuedTable" class="webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Name</th>
+            <th>Merit Dots</th>
+            <th>Mana</th>
+            <th>Owned By</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="webgrid-row-style">
+                <td>@item.Name</td>
+                <td>@item.Cost</td>
+                <td>@item.Mana</td>
+                @if (item.Character_List != null)
+                {
+                    <td>@item.Character_List.name</td>
+                }
+                else
+                {
+                    <td></td>
+                }
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#ImbuedTable').DataTable();
+    </script>
+}

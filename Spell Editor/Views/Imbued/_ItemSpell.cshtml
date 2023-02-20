@@ -1,0 +1,21 @@
+﻿@using HtmlHelpers.BeginCollectionItem;
+@model Spell_Editor.Models.ImbuedItemSpell
+
+@using (Html.BeginCollectionItem("Spells"))
+{
+    @Html.HiddenFor(model => model.ImbuedItemId)
+    @Html.HiddenFor(model => model.ImbuedItemSpellId)
+    <div id="itemSpellRow">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-4" style="display: inline-block; text-align: right;">Spell</label>
+                <div class="col-md-8" style="display: inline-block;">
+                    @Html.DropDownListFor(m => m.SpellId, (SelectList)ViewBag.Spells, new { @class = "form-control itemSpellSelect" })
+                </div>
+                <p style="margin-left: 30%;">
+                    <a href="#" class="deleteRow">Delete Spell</a>
+                </p>
+            </div>
+        </div>
+    </div>
+}

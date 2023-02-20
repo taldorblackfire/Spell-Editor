@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Chronicles of Darkness DB Manager</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" />
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.16/dataRender/datetime.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("CofD DM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Artifacts", "Index", "Artifact")</li>
+                    <li>@Html.ActionLink("Attainments", "Index", "Attainment")</li>
+                    <li>@Html.ActionLink("Conditions", "Index", "Condition")</li>
+                    <li>@Html.ActionLink("Devotions", "Index", "Devotion")</li>
+                    <li>@Html.ActionLink("Disciplines", "Index", "Disciplines")</li>
+                    <li>@Html.ActionLink("Dread Powers", "Index", "DreadPower")</li>
+                    <li>@Html.ActionLink("Essence Shaping", "Index", "EssenceShaping")</li>
+                    <li>@Html.ActionLink("Fetishes", "Index", "Fetish")</li>
+                    <li>@Html.ActionLink("Moon Facets", "Index", "MoonFacet")</li>
+                    <li>@Html.ActionLink("Gifts", "Index", "Gift")</li>
+                    <li>@Html.ActionLink("Grimoires", "Index", "Grimoire")</li>
+                    <li>@Html.ActionLink("Imbued Items", "Index", "Imbued")</li>
+                    <li>@Html.ActionLink("Legacies", "Index", "Legacy")</li>
+                    <li>@Html.ActionLink("Manifestations", "Index", "Manifestations")</li>
+                    <li>@Html.ActionLink("Merits", "Index", "Merit")</li>
+                    <li>@Html.ActionLink("NPC Manifestation", "Index", "Manifestation")</li>
+                    <li>@Html.ActionLink("Numina", "Index", "Numina")</li>
+                    <li>@Html.ActionLink("Rites", "Index", "Rites")</li>
+                    <li>@Html.ActionLink("Sight", "Index", "Sight")</li>
+                    <li>@Html.ActionLink("Skills", "Index", "Skill")</li>
+                    <li>@Html.ActionLink("Spells", "Index", "Spell")</li>
+                    <li>@Html.ActionLink("Tilts", "Index", "Tilt")</li>
+                    <li>@Html.ActionLink("Titles", "Index", "Titles")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid body-content" style="margin-top: 250px;">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Chronicles of Darkness DB Manager</p>
+        </footer>
+    </div>
+</body>
+@RenderSection("scripts", required: false)
+</html>

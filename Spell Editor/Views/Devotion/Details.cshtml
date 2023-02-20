@@ -1,0 +1,36 @@
+﻿@model Spell_Editor.Models.Vampire_Devotion
+
+@{
+    ViewBag.Title = "Devotion Details";
+}
+
+<h2 style="text-align: center;">Devotion Details</h2>
+
+<div class="form-horizontal">
+    <h4 style="text-align: center;">@Model.Name</h4>
+    <hr />
+    <div class="form-group">
+        <label class="control-label col-md-1" style="text-align: center;">Cost</label>
+        <div class="col-md-1">
+            @Html.EditorFor(model => model.Cost, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "background-color: white;" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label style="text-align: center; width: 100%;">Effect</label>
+        <hr/>
+        <div class="col-md-12">
+            <textarea id="Effect" name="Effect" rows="12" class="form-control" readonly="readonly" cols="80">@Model.Effect</textarea>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    <a href="javascript:void(0);" onclick="history.go(-1);">Back to List</a>
+</p>
+
+@section Scripts {
+    <script type="text/javascript">
+        $("#Effect").height($("#Effect")[0].scrollHeight);
+    </script>
+}

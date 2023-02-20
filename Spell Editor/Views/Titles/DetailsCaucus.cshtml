@@ -1,0 +1,26 @@
+﻿@model Spell_Editor.Models.MageCaucusInfo
+
+@{
+    ViewBag.Title = "Caucus Title Details";
+}
+
+<h2>@Model.Title</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd style="margin: 0 0;">
+            <textarea id="Description" name="Description" rows="10" style="max-width: 1150px; border: none; text-align: justify;" readonly="readonly" cols="180">@Model.Description</textarea>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditCaucus", new { id = Model.MageCaucusId }) |
+    <a href="javascript:void(0);" onclick="history.go(-1);">Back to List</a>
+</p>
+
+@section Scripts {
+    <script type="text/javascript">
+        $("#Description").height($("#Description")[0].scrollHeight);
+    </script>
+}

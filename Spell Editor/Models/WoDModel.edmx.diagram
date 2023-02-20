@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="533b4bd7914e489690b41c010cb399ff" Name="Diagram1">
+        <EntityTypeShape EntityType="WoDModel.Ammo" Width="1.5" PointX="3.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Arcana_Table" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.ArmorTable" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Artifact_Table" Width="1.5" PointX="4.375" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Attainment_Table" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Ceremony" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Character_Equipment" Width="1.5" PointX="6" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Character_List" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Condition" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Grimoire_Table" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Haunt" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Imbued_Table" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.ImbuedItemSpell" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.MageCaucusInfo" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.MageConsiliumTitle" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Memento" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Merit" Width="1.5" PointX="7.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.RefBurden" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.RefGeistKey" Width="1.5" PointX="11.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Sight_Table" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Skill_Table" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Spell_Arcana_Table" Width="1.5" PointX="5.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Spell_Table" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Tilt" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Vampire_Coils" Width="1.5" PointX="13.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Vampire_Cruac" Width="1.5" PointX="13.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Vampire_Devotion" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Vampire_Disciplines" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WoDModel.Vampire_Sorcery" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="WoDModel.FK_dbo_Character_Equipment_dbo_Ammo_ammoId" ManuallyRouted="false" />
+        <AssociationConnector Association="WoDModel.FK_Artifact_Table_Character_List" ManuallyRouted="false" />
+        <AssociationConnector Association="WoDModel.FK_dbo_Character_Equipment_dbo_Character_List_characterId" ManuallyRouted="false" />
+        <AssociationConnector Association="WoDModel.FK_Grimoire_Table_Character_List" ManuallyRouted="false" />
+        <AssociationConnector Association="WoDModel.FK_Imbued_Table_Character_List" ManuallyRouted="false" />
+        <AssociationConnector Association="WoDModel.FK_ImbuedItemSpell_Imbued_Table" ManuallyRouted="false" />
+        <AssociationConnector Association="WoDModel.FK_ImbuedItemSpell_Spell_Table" ManuallyRouted="false" />
+        <AssociationConnector Association="WoDModel.FK__Spell_Arc__Spell__4589517F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WoDModel.Rote_Table" Width="1.5" PointX="8.25" PointY="14.25" />
+        <AssociationConnector Association="WoDModel.FK_Rote_Table_Grimoire_Table" />
+        <AssociationConnector Association="WoDModel.FK_Rote_Table_Spell_Table" />
+        <EntityTypeShape EntityType="WoDModel.Skill" Width="1.5" PointX="10.375" PointY="14.875" />
+        <AssociationConnector Association="WoDModel.FK_Rote_Table_Skills" />
+        <EntityTypeShape EntityType="WoDModel.MageOrder" Width="1.5" PointX="12.625" PointY="16.625" />
+        <AssociationConnector Association="WoDModel.FK_MageCaucusInfo_MageOrder" />
+        <AssociationConnector Association="WoDModel.FK_MageOrder_Skills" />
+        <AssociationConnector Association="WoDModel.FK_MageOrder_Skills1" />
+        <AssociationConnector Association="WoDModel.FK_MageOrder_Skills2" />
+        <EntityTypeShape EntityType="WoDModel.MagePath" Width="1.5" PointX="14.625" PointY="21.125" />
+        <EntityTypeShape EntityType="WoDModel.RefLegacy" Width="1.5" PointX="15.75" PointY="9.875" />
+        <AssociationConnector Association="WoDModel.FK_RefLegacy_Arcana_Table" />
+        <AssociationConnector Association="WoDModel.FK_RefLegacy_Arcana_Table1" />
+        <AssociationConnector Association="WoDModel.FK_RefLegacy_MageOrder" />
+        <AssociationConnector Association="WoDModel.FK_RefLegacy_MageOrder1" />
+        <AssociationConnector Association="WoDModel.FK_RefLegacy_MagePath" />
+        <EntityTypeShape EntityType="WoDModel.ArtifactAttainment" Width="1.5" PointX="17.25" PointY="0.875" />
+        <EntityTypeShape EntityType="WoDModel.ItemEnhancement" Width="1.5" PointX="8.25" PointY="21.375" />
+        <EntityTypeShape EntityType="WoDModel.RefEnhancement" Width="1.5" PointX="6" PointY="24" />
+        <AssociationConnector Association="WoDModel.FK_ArtifactAttainment_Artifact_Table" />
+        <AssociationConnector Association="WoDModel.FK_ArtifactAttainment_Attainment_Table" />
+        <AssociationConnector Association="WoDModel.FK_ItemEnhancement_Imbued_Table" />
+        <AssociationConnector Association="WoDModel.FK_ItemEnhancement_RefEnhancement" />
+        <AssociationConnector Association="WoDModel.FK_ItemEnhancement_Spell_Table" />
+        <EntityTypeShape EntityType="WoDModel.Attribute_Table" Width="1.5" PointX="0.5" PointY="4.5" />
+        <EntityTypeShape EntityType="WoDModel.FetishTable" Width="1.5" PointX="16.375" PointY="14.75" />
+        <EntityTypeShape EntityType="WoDModel.SpellView" Width="1.5" PointX="17.375" PointY="3.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

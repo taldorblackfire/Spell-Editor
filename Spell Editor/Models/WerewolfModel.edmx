@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WerewolfModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FetishTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Effect" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Talen" Type="bit" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RefMoonGift">
+          <Key>
+            <PropertyRef Name="MoonGiftId" />
+          </Key>
+          <Property Name="MoonGiftId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MoonGift" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RefMoonGiftFacet">
+          <Key>
+            <PropertyRef Name="MoonGiftFacetId" />
+          </Key>
+          <Property Name="MoonGiftFacetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MoonCategory" Type="int" Nullable="false" />
+          <Property Name="MoonFacet" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="nvarchar" MaxLength="200" />
+          <Property Name="DiePool" Type="nvarchar" MaxLength="200" />
+          <Property Name="Duration" Type="nvarchar" MaxLength="200" />
+          <Property Name="Action" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DramaticFailure" Type="nvarchar(max)" />
+          <Property Name="Failure" Type="nvarchar(max)" />
+          <Property Name="Success" Type="nvarchar(max)" />
+          <Property Name="ExceptionalSuccess" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RefRenown">
+          <Key>
+            <PropertyRef Name="RenownId" />
+          </Key>
+          <Property Name="RenownId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Renown" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RefShadowGiftCategory">
+          <Key>
+            <PropertyRef Name="GiftCategoryId" />
+          </Key>
+          <Property Name="GiftCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RefShadowGifts">
+          <Key>
+            <PropertyRef Name="RefGiftsId" />
+          </Key>
+          <Property Name="RefGiftsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="GiftName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RenownId" Type="int" />
+          <Property Name="Cost" Type="nvarchar" MaxLength="200" />
+          <Property Name="DiePool" Type="nvarchar" MaxLength="200" />
+          <Property Name="Action" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Duration" Type="nvarchar" MaxLength="200" />
+          <Property Name="DramaticFailure" Type="nvarchar(max)" />
+          <Property Name="Failure" Type="nvarchar(max)" />
+          <Property Name="Success" Type="nvarchar(max)" />
+          <Property Name="ExceptionalSuccess" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Rite">
+          <Key>
+            <PropertyRef Name="RiteId" />
+          </Key>
+          <Property Name="RiteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RiteName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Symbols" Type="nvarchar(max)" />
+          <Property Name="SampleRite" Type="nvarchar(max)" />
+          <Property Name="Action" Type="nvarchar" MaxLength="200" />
+          <Property Name="Duration" Type="nvarchar" MaxLength="200" />
+          <Property Name="Success" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityContainer Name="WerewolfModelStoreContainer">
+          <EntitySet Name="FetishTable" EntityType="Self.FetishTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RefMoonGift" EntityType="Self.RefMoonGift" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RefMoonGiftFacet" EntityType="Self.RefMoonGiftFacet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RefRenown" EntityType="Self.RefRenown" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RefShadowGiftCategory" EntityType="Self.RefShadowGiftCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RefShadowGifts" EntityType="Self.RefShadowGifts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rite" EntityType="Self.Rite" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WerewolfModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="RefMoonGift">
+          <Key>
+            <PropertyRef Name="MoonGiftId" />
+          </Key>
+          <Property Name="MoonGiftId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MoonGift" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RefMoonGiftFacets" Relationship="WerewolfModel.FK_RefMoonGiftFacet_RefMoonGift" FromRole="RefMoonGift" ToRole="RefMoonGiftFacet" />
+        </EntityType>
+        <EntityType Name="RefRenown">
+          <Key>
+            <PropertyRef Name="RenownId" />
+          </Key>
+          <Property Name="RenownId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Renown" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RefShadowGifts" Relationship="WerewolfModel.FK_RefShadowGifts_RefRenown" FromRole="RefRenown" ToRole="RefShadowGift" />
+        </EntityType>
+        <EntityType Name="RefShadowGiftCategory">
+          <Key>
+            <PropertyRef Name="GiftCategoryId" />
+          </Key>
+          <Property Name="GiftCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RefShadowGifts" Relationship="WerewolfModel.FK_RefGifts_RefGiftCategory" FromRole="RefShadowGiftCategory" ToRole="RefShadowGift" />
+        </EntityType>
+        <EntityContainer Name="WerewolfEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RefMoonGifts" EntityType="Self.RefMoonGift" />
+          <EntitySet Name="RefRenowns" EntityType="Self.RefRenown" />
+          <EntitySet Name="RefShadowGiftCategories" EntityType="Self.RefShadowGiftCategory" />
+          <EntitySet Name="RefShadowGifts" EntityType="WerewolfModel.RefShadowGift" />
+          <AssociationSet Name="FK_RefShadowGifts_RefRenown" Association="WerewolfModel.FK_RefShadowGifts_RefRenown">
+            <End Role="RefRenown" EntitySet="RefRenowns" />
+            <End Role="RefShadowGift" EntitySet="RefShadowGifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RefGifts_RefGiftCategory" Association="WerewolfModel.FK_RefGifts_RefGiftCategory">
+            <End Role="RefShadowGiftCategory" EntitySet="RefShadowGiftCategories" />
+            <End Role="RefShadowGift" EntitySet="RefShadowGifts" />
+          </AssociationSet>
+          <EntitySet Name="RefMoonGiftFacets" EntityType="WerewolfModel.RefMoonGiftFacet" />
+          <AssociationSet Name="FK_RefMoonGiftFacet_RefMoonGift" Association="WerewolfModel.FK_RefMoonGiftFacet_RefMoonGift">
+            <End Role="RefMoonGift" EntitySet="RefMoonGifts" />
+            <End Role="RefMoonGiftFacet" EntitySet="RefMoonGiftFacets" />
+          </AssociationSet>
+          <EntitySet Name="Rites" EntityType="WerewolfModel.Rite" />
+          <EntitySet Name="FetishTables" EntityType="WerewolfModel.FetishTable" />
+          </EntityContainer>
+        <EntityType Name="RefShadowGift">
+          <Key>
+            <PropertyRef Name="RefGiftsId" />
+          </Key>
+          <Property Name="RefGiftsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="GiftName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RenownId" Type="Int32" />
+          <Property Name="Cost" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DiePool" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" FixedLength="false" Unicode="true" MaxLength="Max" />
+          <Property Name="Duration" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DramaticFailure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Failure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Success" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExceptionalSuccess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RefRenown" Relationship="WerewolfModel.FK_RefShadowGifts_RefRenown" FromRole="RefShadowGift" ToRole="RefRenown" />
+          <NavigationProperty Name="RefShadowGiftCategory" Relationship="WerewolfModel.FK_RefGifts_RefGiftCategory" FromRole="RefShadowGift" ToRole="RefShadowGiftCategory" />
+        </EntityType>
+        <Association Name="FK_RefShadowGifts_RefRenown">
+          <End Type="WerewolfModel.RefRenown" Role="RefRenown" Multiplicity="0..1" />
+          <End Type="WerewolfModel.RefShadowGift" Role="RefShadowGift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RefRenown">
+              <PropertyRef Name="RenownId" />
+            </Principal>
+            <Dependent Role="RefShadowGift">
+              <PropertyRef Name="RenownId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RefGifts_RefGiftCategory">
+          <End Type="WerewolfModel.RefShadowGiftCategory" Role="RefShadowGiftCategory" Multiplicity="1" />
+          <End Type="WerewolfModel.RefShadowGift" Role="RefShadowGift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RefShadowGiftCategory">
+              <PropertyRef Name="GiftCategoryId" />
+            </Principal>
+            <Dependent Role="RefShadowGift">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RefMoonGiftFacet">
+          <Key>
+            <PropertyRef Name="MoonGiftFacetId" />
+          </Key>
+          <Property Name="MoonGiftFacetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MoonCategory" Type="Int32" Nullable="false" />
+          <Property Name="MoonFacet" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DiePool" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Duration" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DramaticFailure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Failure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Success" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExceptionalSuccess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RefMoonGift" Relationship="WerewolfModel.FK_RefMoonGiftFacet_RefMoonGift" FromRole="RefMoonGiftFacet" ToRole="RefMoonGift" />
+        </EntityType>
+        <Association Name="FK_RefMoonGiftFacet_RefMoonGift">
+          <End Type="WerewolfModel.RefMoonGift" Role="RefMoonGift" Multiplicity="1" />
+          <End Type="WerewolfModel.RefMoonGiftFacet" Role="RefMoonGiftFacet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RefMoonGift">
+              <PropertyRef Name="MoonGiftId" />
+            </Principal>
+            <Dependent Role="RefMoonGiftFacet">
+              <PropertyRef Name="MoonCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Rite">
+          <Key>
+            <PropertyRef Name="RiteId" />
+          </Key>
+          <Property Name="RiteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RiteName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Symbols" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SampleRite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Duration" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Success" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FetishTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Effect" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Talen" Type="Boolean" Nullable="false" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WerewolfModelStoreContainer" CdmEntityContainer="WerewolfEntities">
+          <EntitySetMapping Name="RefMoonGifts">
+            <EntityTypeMapping TypeName="WerewolfModel.RefMoonGift">
+              <MappingFragment StoreEntitySet="RefMoonGift">
+                <ScalarProperty Name="MoonGiftId" ColumnName="MoonGiftId" />
+                <ScalarProperty Name="MoonGift" ColumnName="MoonGift" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RefRenowns">
+            <EntityTypeMapping TypeName="WerewolfModel.RefRenown">
+              <MappingFragment StoreEntitySet="RefRenown">
+                <ScalarProperty Name="RenownId" ColumnName="RenownId" />
+                <ScalarProperty Name="Renown" ColumnName="Renown" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RefShadowGiftCategories">
+            <EntityTypeMapping TypeName="WerewolfModel.RefShadowGiftCategory">
+              <MappingFragment StoreEntitySet="RefShadowGiftCategory">
+                <ScalarProperty Name="GiftCategoryId" ColumnName="GiftCategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RefShadowGifts">
+            <EntityTypeMapping TypeName="WerewolfModel.RefShadowGift">
+              <MappingFragment StoreEntitySet="RefShadowGifts">
+                <ScalarProperty Name="ExceptionalSuccess" ColumnName="ExceptionalSuccess" />
+                <ScalarProperty Name="Success" ColumnName="Success" />
+                <ScalarProperty Name="Failure" ColumnName="Failure" />
+                <ScalarProperty Name="DramaticFailure" ColumnName="DramaticFailure" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="DiePool" ColumnName="DiePool" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="RenownId" ColumnName="RenownId" />
+                <ScalarProperty Name="GiftName" ColumnName="GiftName" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="RefGiftsId" ColumnName="RefGiftsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RefMoonGiftFacets">
+            <EntityTypeMapping TypeName="WerewolfModel.RefMoonGiftFacet">
+              <MappingFragment StoreEntitySet="RefMoonGiftFacet">
+                <ScalarProperty Name="ExceptionalSuccess" ColumnName="ExceptionalSuccess" />
+                <ScalarProperty Name="Success" ColumnName="Success" />
+                <ScalarProperty Name="Failure" ColumnName="Failure" />
+                <ScalarProperty Name="DramaticFailure" ColumnName="DramaticFailure" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="DiePool" ColumnName="DiePool" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="MoonFacet" ColumnName="MoonFacet" />
+                <ScalarProperty Name="MoonCategory" ColumnName="MoonCategory" />
+                <ScalarProperty Name="MoonGiftFacetId" ColumnName="MoonGiftFacetId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rites">
+            <EntityTypeMapping TypeName="WerewolfModel.Rite">
+              <MappingFragment StoreEntitySet="Rite">
+                <ScalarProperty Name="Success" ColumnName="Success" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="SampleRite" ColumnName="SampleRite" />
+                <ScalarProperty Name="Symbols" ColumnName="Symbols" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RiteName" ColumnName="RiteName" />
+                <ScalarProperty Name="RiteId" ColumnName="RiteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FetishTables">
+            <EntityTypeMapping TypeName="WerewolfModel.FetishTable">
+              <MappingFragment StoreEntitySet="FetishTable">
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Talen" ColumnName="Talen" />
+                <ScalarProperty Name="Effect" ColumnName="Effect" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

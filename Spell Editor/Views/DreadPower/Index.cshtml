@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Spell_Editor.Models.DreadPower>
+
+@{
+    ViewBag.Title = "Dread Powers";
+}
+
+<h2>Dread Powers</h2>
+
+<p>
+    @Html.ActionLink("Create New Dread Power", "Create")
+</p>
+<table id="DreadTable" class="webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Name</th>
+            <th>Effect</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="webgrid-row-style">
+                <td>@item.Name</td>
+                <td>@item.Effect</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#DreadTable').DataTable();
+    </script>
+}

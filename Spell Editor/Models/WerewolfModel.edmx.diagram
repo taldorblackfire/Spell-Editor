@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c8c40374670b4098b0688f3dcfc1b43c" Name="Diagram1">
+        <EntityTypeShape EntityType="WerewolfModel.RefMoonGift" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WerewolfModel.RefRenown" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WerewolfModel.RefShadowGiftCategory" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WerewolfModel.RefShadowGift" Width="1.5" PointX="3" PointY="3" />
+        <AssociationConnector Association="WerewolfModel.FK_RefShadowGifts_RefRenown" />
+        <AssociationConnector Association="WerewolfModel.FK_RefGifts_RefGiftCategory" />
+        <EntityTypeShape EntityType="WerewolfModel.RefMoonGiftFacet" Width="1.5" PointX="8" PointY="1.125" />
+        <AssociationConnector Association="WerewolfModel.FK_RefMoonGiftFacet_RefMoonGift" />
+        <EntityTypeShape EntityType="WerewolfModel.Rite" Width="1.5" PointX="5.375" PointY="5.75" />
+        <EntityTypeShape EntityType="WerewolfModel.FetishTable" Width="1.5" PointX="7.375" PointY="5.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,31 @@
+﻿@model Spell_Editor.Models.ArcanaListModel
+
+@{
+    ViewBag.Title = "Attainment Index";
+}
+
+<h2>Attainment Index</h2>
+
+<p>@Html.ActionLink("Create New", "Create")</p>
+
+<table id="AttainmentTable" class="table webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Arcana</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (string item in Model.arcana)
+        {
+            <tr class="webgrid-row-style">
+                <td>@Html.ActionLink(item, "Attainments", new { id = item.Trim() })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#AttainmentTable').DataTable();
+    </script>
+}
