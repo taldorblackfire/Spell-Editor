@@ -27,7 +27,6 @@ namespace Spell_Editor.Models
     
         public virtual DbSet<Ammo> Ammoes { get; set; }
         public virtual DbSet<Arcana_Table> Arcana_Table { get; set; }
-        public virtual DbSet<ArmorTable> ArmorTables { get; set; }
         public virtual DbSet<Artifact_Table> Artifact_Table { get; set; }
         public virtual DbSet<Attainment_Table> Attainment_Table { get; set; }
         public virtual DbSet<Ceremony> Ceremonies { get; set; }
@@ -42,7 +41,6 @@ namespace Spell_Editor.Models
         public virtual DbSet<MageConsiliumTitle> MageConsiliumTitles { get; set; }
         public virtual DbSet<Memento> Mementoes { get; set; }
         public virtual DbSet<Merit> Merits { get; set; }
-        public virtual DbSet<RefBurden> RefBurdens { get; set; }
         public virtual DbSet<RefGeistKey> RefGeistKeys { get; set; }
         public virtual DbSet<Sight_Table> Sight_Table { get; set; }
         public virtual DbSet<Skill_Table> Skill_Table { get; set; }
@@ -65,5 +63,6 @@ namespace Spell_Editor.Models
         public virtual DbSet<Attribute_Table> Attribute_Table { get; set; }
         public virtual DbSet<FetishTable> FetishTable { get; set; }
         public virtual DbSet<SpellView> SpellView { get; set; }
+        public virtual DbSet<Fate_Hex_Boons> Fate_Hex_Boons { get; set; }
     }
 }

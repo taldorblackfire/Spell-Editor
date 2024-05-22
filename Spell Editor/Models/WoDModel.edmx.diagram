@@ -7,7 +7,6 @@
       <Diagram DiagramId="533b4bd7914e489690b41c010cb399ff" Name="Diagram1">
         <EntityTypeShape EntityType="WoDModel.Ammo" Width="1.5" PointX="3.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="WoDModel.Arcana_Table" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WoDModel.ArmorTable" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WoDModel.Artifact_Table" Width="1.5" PointX="4.375" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="WoDModel.Attainment_Table" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WoDModel.Ceremony" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
@@ -22,7 +21,6 @@
         <EntityTypeShape EntityType="WoDModel.MageConsiliumTitle" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WoDModel.Memento" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WoDModel.Merit" Width="1.5" PointX="7.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WoDModel.RefBurden" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WoDModel.RefGeistKey" Width="1.5" PointX="11.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WoDModel.Sight_Table" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WoDModel.Skill_Table" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
@@ -70,6 +68,7 @@
         <EntityTypeShape EntityType="WoDModel.Attribute_Table" Width="1.5" PointX="0.5" PointY="4.5" />
         <EntityTypeShape EntityType="WoDModel.FetishTable" Width="1.5" PointX="16.375" PointY="14.75" />
         <EntityTypeShape EntityType="WoDModel.SpellView" Width="1.5" PointX="17.375" PointY="3.75" />
+        <EntityTypeShape EntityType="WoDModel.Fate_Hex_Boons" Width="1.5" PointX="17.375" PointY="6.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

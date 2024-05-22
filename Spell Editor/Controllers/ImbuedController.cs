@@ -64,7 +64,7 @@ namespace Spell_Editor.Controllers
         {
             if (ModelState.IsValid)
             {
-                imbued_Table.ImbuedInfo.Mana = 1;
+                imbued_Table.ImbuedInfo.Mana = 0;
                 imbued_Table.ImbuedInfo.Battery_Dots = 0;
 
                 List<ImbuedItemSpell> imbuedSpells = new List<ImbuedItemSpell>();
@@ -88,6 +88,11 @@ namespace Spell_Editor.Controllers
                             while (spellDots < 5) { spellDots++; highestLevel--; }
                             for (int j = 0; j < highestLevel; j++) spellDots += 2;
                         }
+                    }
+
+                    if(spellEnhancements.Count > 0)
+                    {
+                        imbued_Table.ImbuedInfo.Mana = 1;
                     }
 
                     for (int i = 0; i < bonusEnhancements.Count; i++)
@@ -206,7 +211,7 @@ namespace Spell_Editor.Controllers
         {
             if (ModelState.IsValid)
             {
-                imbued_Table.ImbuedInfo.Mana = 1;
+                imbued_Table.ImbuedInfo.Mana = 0;
                 imbued_Table.ImbuedInfo.Battery_Dots = 0;
 
                 int bonusDots = 0, spellDots = 0;
@@ -228,6 +233,11 @@ namespace Spell_Editor.Controllers
                             while (spellDots < 5) { spellDots++; highestLevel--; }
                             for (int j = 0; j < highestLevel; j++) spellDots += 2;
                         }
+                    }
+
+                    if (spellEnhancements.Count > 0)
+                    {
+                        imbued_Table.ImbuedInfo.Mana = 1;
                     }
 
                     for (int i = 0; i < bonusEnhancements.Count; i++)

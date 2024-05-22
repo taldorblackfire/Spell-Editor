@@ -21,30 +21,6 @@
           <Property Name="arcana" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Purview" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Mystaria.dbo.ArmorTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="ArmorTable">
-          <Key>
-            <PropertyRef Name="ArmorId" />
-            
-            
-            
-            
-            
-            
-            
-            
-          </Key>
-          <Property Name="ArmorId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ArmorName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="GeneralArmor" Type="int" Nullable="false" />
-          <Property Name="BulletArmor" Type="int" Nullable="false" />
-          <Property Name="Degrade" Type="bit" Nullable="false" />
-          <Property Name="RangedDefense" Type="bit" Nullable="false" />
-          <Property Name="Supernatural" Type="bit" Nullable="false" />
-          <Property Name="BonusHealth" Type="int" Nullable="false" />
-          <Property Name="BonusDefense" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Artifact_Table">
           <Key>
             <PropertyRef Name="ID" />
@@ -130,6 +106,14 @@ warning 6002: The table/view 'Mystaria.dbo.ArmorTable' does not have a primary k
           <Property Name="Effect" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Beat" Type="nvarchar(max)" />
           <Property Name="Resolution" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fate_Hex_Boons">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="FetishTable">
           <Key>
@@ -266,13 +250,6 @@ warning 6002: The table/view 'Mystaria.dbo.ArmorTable' does not have a primary k
           <Property Name="LevelStart" Type="int" />
           <Property Name="Multiple" Type="bit" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="RefBurden">
-          <Key>
-            <PropertyRef Name="Burden" />
-          </Key>
-          <Property Name="Burden" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="300" Nullable="false" />
         </EntityType>
         <EntityType Name="RefEnhancement">
           <Key>
@@ -412,7 +389,7 @@ warning 6002: The table/view 'Mystaria.dbo.ArmorTable' does not have a primary k
           <Property Name="Cost" Type="tinyint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'CofD.dbo.SpellView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SpellView">
           <Key>
             <PropertyRef Name="Spell_Name" />
@@ -442,7 +419,9 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ArtifactAttainment_Artifact_Table">
-          <End Role="Artifact_Table" Type="Self.Artifact_Table" Multiplicity="1" />
+          <End Role="Artifact_Table" Type="Self.Artifact_Table" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ArtifactAttainment" Type="Self.ArtifactAttainment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Artifact_Table">
@@ -454,7 +433,9 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ArtifactAttainment_Attainment_Table">
-          <End Role="Attainment_Table" Type="Self.Attainment_Table" Multiplicity="1" />
+          <End Role="Attainment_Table" Type="Self.Attainment_Table" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ArtifactAttainment" Type="Self.ArtifactAttainment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Attainment_Table">
@@ -462,18 +443,6 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
             </Principal>
             <Dependent Role="ArtifactAttainment">
               <PropertyRef Name="AttainmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Character_Equipment_Ammo">
-          <End Role="Ammo" Type="Self.Ammo" Multiplicity="0..1" />
-          <End Role="Character_Equipment" Type="Self.Character_Equipment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ammo">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Character_Equipment">
-              <PropertyRef Name="ammoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -520,7 +489,9 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ImbuedItemSpell_Imbued_Table">
-          <End Role="Imbued_Table" Type="Self.Imbued_Table" Multiplicity="1" />
+          <End Role="Imbued_Table" Type="Self.Imbued_Table" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ImbuedItemSpell" Type="Self.ImbuedItemSpell" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Imbued_Table">
@@ -532,7 +503,9 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ImbuedItemSpell_Spell_Table">
-          <End Role="Spell_Table" Type="Self.Spell_Table" Multiplicity="1" />
+          <End Role="Spell_Table" Type="Self.Spell_Table" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ImbuedItemSpell" Type="Self.ImbuedItemSpell" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Spell_Table">
@@ -544,7 +517,9 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ItemEnhancement_Imbued_Table">
-          <End Role="Imbued_Table" Type="Self.Imbued_Table" Multiplicity="0..1" />
+          <End Role="Imbued_Table" Type="Self.Imbued_Table" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ItemEnhancement" Type="Self.ItemEnhancement" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Imbued_Table">
@@ -556,7 +531,9 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ItemEnhancement_RefEnhancement">
-          <End Role="RefEnhancement" Type="Self.RefEnhancement" Multiplicity="0..1" />
+          <End Role="RefEnhancement" Type="Self.RefEnhancement" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ItemEnhancement" Type="Self.ItemEnhancement" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RefEnhancement">
@@ -568,7 +545,9 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ItemEnhancement_Spell_Table">
-          <End Role="Spell_Table" Type="Self.Spell_Table" Multiplicity="0..1" />
+          <End Role="Spell_Table" Type="Self.Spell_Table" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ItemEnhancement" Type="Self.ItemEnhancement" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Spell_Table">
@@ -580,7 +559,9 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MageCaucusInfo_MageOrder">
-          <End Role="MageOrder" Type="Self.MageOrder" Multiplicity="1" />
+          <End Role="MageOrder" Type="Self.MageOrder" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="MageCaucusInfo" Type="Self.MageCaucusInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MageOrder">
@@ -688,7 +669,9 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Spell_Arcana_Table_Spell_Table">
-          <End Role="Spell_Table" Type="Self.Spell_Table" Multiplicity="1" />
+          <End Role="Spell_Table" Type="Self.Spell_Table" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Spell_Arcana_Table" Type="Self.Spell_Arcana_Table" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Spell_Table">
@@ -710,6 +693,7 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           <EntitySet Name="Character_Equipment" EntityType="Self.Character_Equipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Character_List" EntityType="Self.Character_List" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Condition" EntityType="Self.Condition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fate_Hex_Boons" EntityType="Self.Fate_Hex_Boons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FetishTable" EntityType="Self.FetishTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Grimoire_Table" EntityType="Self.Grimoire_Table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Haunts" EntityType="Self.Haunts" Schema="dbo" store:Type="Tables" />
@@ -722,7 +706,6 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           <EntitySet Name="MagePath" EntityType="Self.MagePath" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Memento" EntityType="Self.Memento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Merits" EntityType="Self.Merits" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RefBurden" EntityType="Self.RefBurden" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RefEnhancement" EntityType="Self.RefEnhancement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RefGeistKey" EntityType="Self.RefGeistKey" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RefLegacy" EntityType="Self.RefLegacy" Schema="dbo" store:Type="Tables" />
@@ -738,19 +721,6 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           <EntitySet Name="Vampire_Devotion" EntityType="Self.Vampire_Devotion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vampire_Disciplines" EntityType="Self.Vampire_Disciplines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vampire_Sorcery" EntityType="Self.Vampire_Sorcery" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ArmorTable" EntityType="Self.ArmorTable" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ArmorTable].[ArmorId] AS [ArmorId], 
-    [ArmorTable].[ArmorName] AS [ArmorName], 
-    [ArmorTable].[GeneralArmor] AS [GeneralArmor], 
-    [ArmorTable].[BulletArmor] AS [BulletArmor], 
-    [ArmorTable].[Degrade] AS [Degrade], 
-    [ArmorTable].[RangedDefense] AS [RangedDefense], 
-    [ArmorTable].[Supernatural] AS [Supernatural], 
-    [ArmorTable].[BonusHealth] AS [BonusHealth], 
-    [ArmorTable].[BonusDefense] AS [BonusDefense]
-    FROM [dbo].[ArmorTable] AS [ArmorTable]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="SpellView" EntityType="Self.SpellView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [SpellView].[Spell_Name] AS [Spell_Name], 
@@ -771,10 +741,6 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           <AssociationSet Name="FK_ArtifactAttainment_Attainment_Table" Association="Self.FK_ArtifactAttainment_Attainment_Table">
             <End Role="Attainment_Table" EntitySet="Attainment_Table" />
             <End Role="ArtifactAttainment" EntitySet="ArtifactAttainment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Character_Equipment_Ammo" Association="Self.FK_Character_Equipment_Ammo">
-            <End Role="Ammo" EntitySet="Ammo" />
-            <End Role="Character_Equipment" EntitySet="Character_Equipment" />
           </AssociationSet>
           <AssociationSet Name="FK_Character_Equipment_Character_List" Association="Self.FK_Character_Equipment_Character_List">
             <End Role="Character_List" EntitySet="Character_List" />
@@ -872,20 +838,6 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           <NavigationProperty Name="RefLegacies" Relationship="WoDModel.FK_RefLegacy_Arcana_Table" FromRole="Arcana_Table" ToRole="RefLegacy" />
           <NavigationProperty Name="RefLegacies1" Relationship="WoDModel.FK_RefLegacy_Arcana_Table1" FromRole="Arcana_Table" ToRole="RefLegacy" />
           </EntityType>
-        <EntityType Name="ArmorTable">
-          <Key>
-            <PropertyRef Name="ArmorId" />
-          </Key>
-          <Property Name="ArmorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ArmorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="GeneralArmor" Type="Int32" Nullable="false" />
-          <Property Name="BulletArmor" Type="Int32" Nullable="false" />
-          <Property Name="Degrade" Type="Boolean" Nullable="false" />
-          <Property Name="RangedDefense" Type="Boolean" Nullable="false" />
-          <Property Name="Supernatural" Type="Boolean" Nullable="false" />
-          <Property Name="BonusHealth" Type="Int32" Nullable="false" />
-          <Property Name="BonusDefense" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="Artifact_Table">
           <Key>
             <PropertyRef Name="ID" />
@@ -1068,13 +1020,6 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           <Property Name="LevelStart" Type="Int32" />
           <Property Name="Multiple" Type="Boolean" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <EntityType Name="RefBurden">
-          <Key>
-            <PropertyRef Name="Burden" />
-          </Key>
-          <Property Name="Burden" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="RefGeistKey">
           <Key>
@@ -1280,7 +1225,6 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
         <EntityContainer Name="WoDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Ammoes" EntityType="Self.Ammo" />
           <EntitySet Name="Arcana_Table" EntityType="Self.Arcana_Table" />
-          <EntitySet Name="ArmorTables" EntityType="Self.ArmorTable" />
           <EntitySet Name="Artifact_Table" EntityType="Self.Artifact_Table" />
           <EntitySet Name="Attainment_Table" EntityType="Self.Attainment_Table" />
           <EntitySet Name="Ceremonies" EntityType="Self.Ceremony" />
@@ -1295,7 +1239,6 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           <EntitySet Name="MageConsiliumTitles" EntityType="Self.MageConsiliumTitle" />
           <EntitySet Name="Mementoes" EntityType="Self.Memento" />
           <EntitySet Name="Merits" EntityType="Self.Merit" />
-          <EntitySet Name="RefBurdens" EntityType="Self.RefBurden" />
           <EntitySet Name="RefGeistKeys" EntityType="Self.RefGeistKey" />
           <EntitySet Name="Sight_Table" EntityType="Self.Sight_Table" />
           <EntitySet Name="Skill_Table" EntityType="Self.Skill_Table" />
@@ -1418,6 +1361,7 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           <EntitySet Name="Attribute_Table" EntityType="WoDModel.Attribute_Table" />
           <EntitySet Name="FetishTable" EntityType="WoDModel.FetishTable" />
           <EntitySet Name="SpellView" EntityType="WoDModel.SpellView" />
+          <EntitySet Name="Fate_Hex_Boons" EntityType="WoDModel.Fate_Hex_Boons" />
           </EntityContainer>
         <EntityType Name="Rote_Table">
           <Key>
@@ -1757,6 +1701,14 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
           <Property Name="Arcana" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Level" Type="Byte" Nullable="false" />
         </EntityType>
+        <EntityType Name="Fate_Hex_Boons">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1778,21 +1730,6 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="arcana" ColumnName="arcana" />
                 <ScalarProperty Name="Purview" ColumnName="Purview" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ArmorTables">
-            <EntityTypeMapping TypeName="WoDModel.ArmorTable">
-              <MappingFragment StoreEntitySet="ArmorTable">
-                <ScalarProperty Name="ArmorId" ColumnName="ArmorId" />
-                <ScalarProperty Name="ArmorName" ColumnName="ArmorName" />
-                <ScalarProperty Name="GeneralArmor" ColumnName="GeneralArmor" />
-                <ScalarProperty Name="BulletArmor" ColumnName="BulletArmor" />
-                <ScalarProperty Name="Degrade" ColumnName="Degrade" />
-                <ScalarProperty Name="RangedDefense" ColumnName="RangedDefense" />
-                <ScalarProperty Name="Supernatural" ColumnName="Supernatural" />
-                <ScalarProperty Name="BonusHealth" ColumnName="BonusHealth" />
-                <ScalarProperty Name="BonusDefense" ColumnName="BonusDefense" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1972,14 +1909,6 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
                 <ScalarProperty Name="Leveled" ColumnName="Leveled" />
                 <ScalarProperty Name="LevelStart" ColumnName="LevelStart" />
                 <ScalarProperty Name="Multiple" ColumnName="Multiple" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RefBurdens">
-            <EntityTypeMapping TypeName="WoDModel.RefBurden">
-              <MappingFragment StoreEntitySet="RefBurden">
-                <ScalarProperty Name="Burden" ColumnName="Burden" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2206,6 +2135,15 @@ warning 6002: The table/view 'Mystaria.dbo.SpellView' does not have a primary ke
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Spell_Name" ColumnName="Spell_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fate_Hex_Boons">
+            <EntityTypeMapping TypeName="WoDModel.Fate_Hex_Boons">
+              <MappingFragment StoreEntitySet="Fate_Hex_Boons">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -52,10 +53,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -175,6 +176,7 @@
     <Compile Include="Controllers\DisciplinesController.cs" />
     <Compile Include="Controllers\EssenceShapingController.cs" />
     <Compile Include="Controllers\DreadPowerController.cs" />
+    <Compile Include="Controllers\FateHexBoonsController.cs" />
     <Compile Include="Controllers\FetishController.cs" />
     <Compile Include="Controllers\GiftController.cs" />
     <Compile Include="Controllers\GrimoireController.cs" />
@@ -201,14 +203,14 @@
     <Compile Include="Models\Arcana_Table.cs">
       <DependentUpon>WoDModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ArmorTable.cs">
-      <DependentUpon>WoDModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ArtifactAttainment.cs">
       <DependentUpon>WoDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Essence_Shaping.cs">
       <DependentUpon>NPCModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Fate_Hex_Boons.cs">
+      <DependentUpon>WoDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FetishTable.cs">
       <DependentUpon>WoDModel.tt</DependentUpon>
@@ -294,9 +296,6 @@
     </Compile>
     <Compile Include="Models\Numina.cs">
       <DependentUpon>NPCModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RefBurden.cs">
-      <DependentUpon>WoDModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RefEnhancement.cs">
       <DependentUpon>WoDModel.tt</DependentUpon>
@@ -624,6 +623,7 @@
     <Content Include="Views\EssenceShaping\Details.cshtml" />
     <Content Include="Views\EssenceShaping\Edit.cshtml" />
     <Content Include="Views\EssenceShaping\Index.cshtml" />
+    <Content Include="Views\FateHexBoons\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -682,9 +682,12 @@
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\RazorGenerator.MsBuild.2.5.0\build\RazorGenerator.MsBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RazorGenerator.MsBuild.2.5.0\build\RazorGenerator.MsBuild.targets'))" />
     <Error Condition="!Exists('..\packages\RazorGenerator.MsBuild.CustomViewBase.0.0.4\build\RazorGenerator.MsBuild.CustomViewBase.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RazorGenerator.MsBuild.CustomViewBase.0.0.4\build\RazorGenerator.MsBuild.CustomViewBase.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="..\packages\RazorGenerator.MsBuild.2.5.0\build\RazorGenerator.MsBuild.targets" Condition="Exists('..\packages\RazorGenerator.MsBuild.2.5.0\build\RazorGenerator.MsBuild.targets')" />
   <Import Project="..\packages\RazorGenerator.MsBuild.CustomViewBase.0.0.4\build\RazorGenerator.MsBuild.CustomViewBase.targets" Condition="Exists('..\packages\RazorGenerator.MsBuild.CustomViewBase.0.0.4\build\RazorGenerator.MsBuild.CustomViewBase.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

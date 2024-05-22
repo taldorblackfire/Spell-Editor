@@ -12,9 +12,10 @@ namespace Spell_Editor.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class RefBurden
+    public partial class Fate_Hex_Boons
     {
-        public string Burden { get; set; }
+        public int Id { get; set; }
         public string Description { get; set; }
+        public string Type { get; set; }
     }
 }

@@ -1,0 +1,31 @@
+﻿@model List<Spell_Editor.Models.Fate_Hex_Boons>
+
+@{
+    ViewBag.Title = "Hex and Boons";
+}
+
+<h2>Hex And Boons</h2>
+
+<table id="HexBoonsTable" class="table webgrid-table">
+    <thead>
+        <tr class="webgrid-header">
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr class="webgrid-row-style">
+                <td>@Model[i].Type</td>
+                <td>@Model[i].Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        var table = $('#HexBoonsTable').DataTable();
+    </script>
+}
