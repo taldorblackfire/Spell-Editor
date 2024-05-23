@@ -69,6 +69,11 @@ namespace Spell_Editor.Controllers
 
                 List<ImbuedItemSpell> imbuedSpells = new List<ImbuedItemSpell>();
 
+                if (imbued_Table.Spells.Count > 0)
+                {
+                    imbued_Table.ImbuedInfo.Mana = 1;
+                }
+
                 int bonusDots = 0, spellDots = 0;
 
                 if (imbued_Table.ItemEnhancement.Count > 0)
@@ -88,11 +93,6 @@ namespace Spell_Editor.Controllers
                             while (spellDots < 5) { spellDots++; highestLevel--; }
                             for (int j = 0; j < highestLevel; j++) spellDots += 2;
                         }
-                    }
-
-                    if(spellEnhancements.Count > 0)
-                    {
-                        imbued_Table.ImbuedInfo.Mana = 1;
                     }
 
                     for (int i = 0; i < bonusEnhancements.Count; i++)
@@ -216,6 +216,11 @@ namespace Spell_Editor.Controllers
 
                 int bonusDots = 0, spellDots = 0;
 
+                if (imbued_Table.Spells.Count > 0)
+                {
+                    imbued_Table.ImbuedInfo.Mana = 1;
+                }
+
                 if (imbued_Table.ItemEnhancement.Count > 0)
                 {
                     List<ItemEnhancement> spellEnhancements = imbued_Table.ItemEnhancement.Where(x => x.SpellId > 0).ToList();
@@ -233,11 +238,6 @@ namespace Spell_Editor.Controllers
                             while (spellDots < 5) { spellDots++; highestLevel--; }
                             for (int j = 0; j < highestLevel; j++) spellDots += 2;
                         }
-                    }
-
-                    if (spellEnhancements.Count > 0)
-                    {
-                        imbued_Table.ImbuedInfo.Mana = 1;
                     }
 
                     for (int i = 0; i < bonusEnhancements.Count; i++)
