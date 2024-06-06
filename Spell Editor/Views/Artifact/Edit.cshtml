@@ -101,7 +101,7 @@
         $("#addAttainment").on('click', function () {
             $.ajax({
                 async: false,
-                url: '/Artifact/AddAttainment',
+                url: './AddAttainment',
                 success: function (partialView) {
                     $('#attainmentInfo').append(partialView);
                 }

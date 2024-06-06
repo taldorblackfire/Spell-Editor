@@ -62,7 +62,7 @@
     $('#addArcana').on('click', function () {
         $.ajax({
             async: false,
-            url: '/Spell/AddNewArcana'
+            url: './AddNewArcana'
         }).success(function (partialView) {
             $('#arcanainfo').append(partialView);
         });
@@ -72,7 +72,7 @@
     {
         if (id > 0) {
             $.ajax({
-                url: '/Spell/DeleteArcana?id=' + id
+                url: './DeleteArcana?id=' + id
             });
         }
     }

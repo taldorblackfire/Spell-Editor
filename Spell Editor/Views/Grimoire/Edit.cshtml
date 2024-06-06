@@ -80,7 +80,7 @@
         $('#addRote').on('click', function () {
             $.ajax({
                 async: false,
-                url: '/Grimoire/AddSpell'
+                url: './AddSpell'
             }).success(function (partialView) {
                 $('#spellinfo').append(partialView);
             });
@@ -89,7 +89,7 @@
         function deleteSpell(id) {
             if (id > 0) {
                 $.ajax({
-                    url: '/Grimoire/DeleteSpell?id=' + id
+                    url: './DeleteSpell?id=' + id
                 });
             }
         }
