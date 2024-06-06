@@ -101,7 +101,7 @@
         $("#addAttainment").on('click', function () {
             $.ajax({
                 async: false,
-                url: './AddAttainment',
+                url: '@Url.Action("AddAttainment")',
                 success: function (partialView) {
                     $('#attainmentInfo').append(partialView);
                 }

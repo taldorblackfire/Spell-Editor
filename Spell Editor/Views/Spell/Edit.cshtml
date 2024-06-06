@@ -58,21 +58,21 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
+<script type="text/javascript">
     $('#addArcana').on('click', function () {
         $.ajax({
             async: false,
-            url: './AddNewArcana'
+            url: '@Url.Action("AddNewArcana")'
         }).success(function (partialView) {
             $('#arcanainfo').append(partialView);
         });
     });
- 
+
     function deleteFunction(id)
     {
         if (id > 0) {
             $.ajax({
-                url: './DeleteArcana?id=' + id
+                url: '@Url.Action("DeleteArcana")?id=' + id
             });
         }
     }
@@ -83,5 +83,5 @@
         $(this).parents("#spellRow:first").remove();
         return false;
     });
-    </script>
+</script>
 }

@@ -108,7 +108,7 @@
         $("#addSpell").on('click', function () {
             $.ajax({
                 async: false,
-                url: './AddSpell',
+                url: '@Url.Action("AddSpell")',
                 success: function (partialView) {
                     $('#spellInfo').append(partialView);
                 }
@@ -118,7 +118,7 @@
         $("#addItemEnhancement").on('click', function () {
             $.ajax({
                 async: false,
-                url: './AddItemEnhancement',
+                url: '@Url.Action("AddItemEnhancement")',
                 success: function (partialView) {
                     $('#itemEnhancementInfo').append(partialView);
                 }

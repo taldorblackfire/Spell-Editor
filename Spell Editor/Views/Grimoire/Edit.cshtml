@@ -80,7 +80,7 @@
         $('#addRote').on('click', function () {
             $.ajax({
                 async: false,
-                url: './AddSpell'
+                url: '@Url.Action("AddSpell")'
             }).success(function (partialView) {
                 $('#spellinfo').append(partialView);
             });
@@ -89,7 +89,7 @@
         function deleteSpell(id) {
             if (id > 0) {
                 $.ajax({
-                    url: './DeleteSpell?id=' + id
+                    url: '@Url.Action("DeleteSpell")?id=' + id
                 });
             }
         }
