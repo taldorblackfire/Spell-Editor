@@ -39,6 +39,11 @@
 
 @section Scripts {
     <script type="text/javascript">
-        var table = $('#ArtifactTable').DataTable();
+        var table = $('#ArtifactTable').DataTable({
+            deferRender: true,
+            scroller: true,
+            scrollY: "233px",
+            processing: true
+        });
     </script>
 }

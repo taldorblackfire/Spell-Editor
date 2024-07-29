@@ -36,6 +36,11 @@
 
 @section Scripts {
     <script type="text/javascript">
-        var table = $('#DevotionTable').DataTable();
+        var table = $('#DevotionTable').DataTable({
+            deferRender: true,
+            scroller: true,
+            scrollY: "233px",
+            processing: true
+        });
     </script>
 }

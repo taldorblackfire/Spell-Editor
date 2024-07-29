@@ -40,6 +40,11 @@
 
 @section Scripts {
     <script type="text/javascript">
-        var table = $('#FetishTable').DataTable();
+        var table = $('#FetishTable').DataTable({
+            deferRender: true,
+            scroller: true,
+            scrollY: "233px",
+            processing: true
+        });
     </script>
 }

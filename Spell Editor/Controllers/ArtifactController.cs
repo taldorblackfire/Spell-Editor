@@ -13,7 +13,7 @@ namespace Spell_Editor.Controllers
 
         public ActionResult AddAttainment()
         {
-            ViewBag.ArtifactAttainments = new SelectList(db.Attainment_Table.Where(x => x.ItemUsable && !x.attainment_name.Contains("Shielding")).OrderBy(x => x.attainment_name), "Id", "attainment_name");
+            ViewBag.ArtifactAttainments = new SelectList(db.Attainment_Table.Where(x => x.ItemUsable).OrderBy(x => x.attainment_name), "Id", "attainment_name");
 
             return PartialView("_ArtifactAttainment", new ArtifactAttainment());
         }
@@ -37,7 +37,7 @@ namespace Spell_Editor.Controllers
 
             vm.ArtifactInfo = artifact_Table;
             vm.Attainments = db.ArtifactAttainments.Where(x => x.ArtifactId == id).ToList();
-            ViewBag.ArtifactAttainments = new SelectList(db.Attainment_Table.Where(x => x.ItemUsable && !x.attainment_name.Contains("Shielding")).OrderBy(x => x.attainment_name), "Id", "attainment_name");
+            ViewBag.ArtifactAttainments = new SelectList(db.Attainment_Table.Where(x => x.ItemUsable).OrderBy(x => x.attainment_name), "Id", "attainment_name");
 
             return View(vm);
         }
@@ -103,7 +103,8 @@ namespace Spell_Editor.Controllers
 
             vm.ArtifactInfo = artifact_Table;
             vm.Attainments = db.ArtifactAttainments.Where(x => x.ArtifactId == id).ToList();
-            ViewBag.ArtifactAttainments = new SelectList(db.Attainment_Table.Where(x => x.ItemUsable && !x.attainment_name.Contains("Shielding")).OrderBy(x => x.attainment_name), "Id", "attainment_name");
+            var list = db.Attainment_Table.Where(x => x.ItemUsable).OrderBy(x => x.attainment_name).ToList();
+            ViewBag.ArtifactAttainments = new SelectList(db.Attainment_Table.Where(x => x.ItemUsable).OrderBy(x => x.attainment_name), "Id", "attainment_name");
 
             return View(vm);
         }
@@ -125,7 +126,12 @@ namespace Spell_Editor.Controllers
 
                 for (int i = 0; i < artifact_Table.Attainments.Count; i++)
                 {
-                    if (artifact_Table.Attainments[i].AttainmentId == 0) db.ArtifactAttainments.Remove(artifact_Table.Attainments[i]);
+                    if (artifact_Table.Attainments[i].AttainmentId == 0)
+                    {
+                        db.ArtifactAttainments.Attach(artifact_Table.Attainments[i]);
+                        db.Entry(artifact_Table.Attainments[i]).State = EntityState.Deleted;
+                        db.SaveChanges();
+                    }
                     else if (artifact_Table.Attainments[i].Id == 0)
                     {
                         artifact_Table.Attainments[i].ArtifactId = artifact_Table.ArtifactInfo.ID;
@@ -153,7 +159,7 @@ namespace Spell_Editor.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ArtifactAttainments = new SelectList(db.Attainment_Table.Where(x => x.ItemUsable && !x.attainment_name.Contains("Shielding")).OrderBy(x => x.attainment_name), "Id", "attainment_name");
+            ViewBag.ArtifactAttainments = new SelectList(db.Attainment_Table.Where(x => x.ItemUsable).OrderBy(x => x.attainment_name), "Id", "attainment_name");
             return View(artifact_Table);
         }
 

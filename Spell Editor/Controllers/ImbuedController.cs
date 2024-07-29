@@ -273,7 +273,15 @@ namespace Spell_Editor.Controllers
                             if (imbued_Table.Spells[i].ImbuedItemSpellId == 0) db.ImbuedItemSpells.Add(imbuedItemSpell);
                             else db.Entry(imbued_Table.Spells[i]).State = EntityState.Modified;
                         }
-                        else db.ImbuedItemSpells.Remove(imbued_Table.Spells[i]);
+                        else
+                        {
+                            int imbuedSpellId = imbued_Table.Spells[i].ImbuedItemSpellId;
+                            var imbuedSpell = db.ImbuedItemSpells.Where(x => x.ImbuedItemSpellId == imbuedSpellId).FirstOrDefault();
+                            if (imbuedSpell != null)
+                            {
+                                db.ImbuedItemSpells.Remove(imbuedSpell);
+                            }
+                        }
                     }
                     spellLevels.Sort();
                     imbued_Table.ImbuedInfo.Spell_Level = (short)spellLevels.Last();

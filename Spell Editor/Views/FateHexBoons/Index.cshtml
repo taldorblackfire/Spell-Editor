@@ -18,7 +18,7 @@
         {
             <tr class="webgrid-row-style">
                 <td>@Model[i].Type</td>
-                <td>@Model[i].Description</td>
+                <td style="width: 700px !important; overflow: hidden;">@Model[i].Description</td>
             </tr>
         }
     </tbody>
@@ -26,6 +26,11 @@
 
 @section Scripts {
     <script type="text/javascript">
-        var table = $('#HexBoonsTable').DataTable();
+        var table = $('#HexBoonsTable').DataTable({
+            deferRender: true,
+            scroller: true,
+            scrollY: "233px",
+            processing: true
+        });
     </script>
 }

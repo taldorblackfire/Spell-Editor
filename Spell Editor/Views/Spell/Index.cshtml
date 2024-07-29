@@ -87,7 +87,12 @@
             }
         });
 
-        var table = $('#SpellTable').DataTable();
+        var table = $('#SpellTable').DataTable({
+            deferRender: true,
+            scroller: true,
+            scrollY: "233px",
+            processing: true
+        });
 
         $('#Arcana, #Level').change(function () {
             table.draw();

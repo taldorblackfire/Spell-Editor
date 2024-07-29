@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New NPC Manifestation", "Create")
 </p>
-<table id="ManifestationTable" class="webgrid-table">
+<table id="ManifestationTable" class="webgrid-table" width="100%" style="table-layout: fixed;">
     <thead>
         <tr class="webgrid-header">
             <th>Name</th>
@@ -22,7 +22,7 @@
         {
             <tr class="webgrid-row-style">
                 <td>@item.Name</td>
-                <td>@item.Effect</td>
+                <td style="width: 700px !important; overflow: hidden;">@item.Effect</td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.ID }) |
@@ -35,6 +35,11 @@
 
 @section Scripts {
     <script type="text/javascript">
-        var table = $('#ManifestationTable').DataTable();
+        var table = $('#ManifestationTable').DataTable({
+            deferRender: true,
+            scroller: true,
+            scrollY: "233px",
+            processing: true
+        });
     </script>
 }

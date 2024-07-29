@@ -33,6 +33,11 @@
 
 @section Scripts {
     <script type="text/javascript">
-        var table = $('#DisciplineTable').DataTable();
+        var table = $('#DisciplineTable').DataTable({
+            deferRender: true,
+            scroller: true,
+            scrollY: "233px",
+            processing: true
+        });
     </script>
 }

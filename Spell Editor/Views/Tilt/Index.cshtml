@@ -10,7 +10,7 @@
     @Html.ActionLink("Create New Tilt", "Create")
 </p>
 
-<table id="TiltTable" class="webgrid-table">
+<table id="TiltTable" class="webgrid-table" width="100%" style="table-layout: fixed;">
     <thead>
         <tr class="webgrid-header">
             <th>Tilt Name</th>
@@ -25,7 +25,7 @@
             <tr class="webgrid-row-style">
                 <td>@item.Name</td>
                 <td>@item.Type</td>
-                <td>@item.Description</td>
+                <td style="width: 700px !important; overflow: hidden;">@item.Description</td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.ID }) |
@@ -38,6 +38,11 @@
 
 @section Scripts {
     <script type="text/javascript">
-        var table = $('#TiltTable').DataTable();
+        var table = $('#TiltTable').DataTable({
+            deferRender: true,
+            scroller: true,
+            scrollY: "233px",
+            processing: true
+        });
     </script>
 }

@@ -51,7 +51,17 @@
 
 @section Scripts {
     <script type="text/javascript">
-        var table = $('#Caucus').DataTable();
-        var table2 = $('#Consilium').DataTable();
+        var table = $('#Caucus').DataTable({
+            deferRender: true,
+            scroller: true,
+            scrollY: "233px",
+            processing: true
+        });
+        var table2 = $('#Consilium').DataTable({
+            deferRender: true,
+            scroller: true,
+            scrollY: "233px",
+            processing: true
+        });
     </script>
 }

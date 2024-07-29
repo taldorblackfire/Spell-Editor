@@ -33,6 +33,11 @@
 
 @section Scripts {
     <script type="text/javascript">
-        var table = $('#GiftTable').DataTable();
+        var table = $('#GiftTable').DataTable({
+            deferRender: true,
+            scroller: true,
+            scrollY: "233px",
+            processing: true
+        });
     </script>
 }

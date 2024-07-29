@@ -77,6 +77,11 @@
 
 @section Scripts {
     <script type="text/javascript">
-        var table = $('#LegacyTable').DataTable();
+        var table = $('#LegacyTable').DataTable({
+            deferRender: true,
+            scroller: true,
+            scrollY: "233px",
+            processing: true
+        });
     </script>
 }
